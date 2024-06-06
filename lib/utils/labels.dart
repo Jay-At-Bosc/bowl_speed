@@ -32,6 +32,8 @@ class Labels {
   static const String milesPerHour = "Mph";
   static String get measurementType => "Measurement Type";
   static String get date => "Date";
+  static String get history => "History";
+  static String get historyNotFound => "No History Found";
 
   static const String speedKmh = "Speed Km/H :";
   static const String speedMhp = "Speed Mph :";
@@ -84,6 +86,9 @@ class Labels {
   static String get enterMeter => "Enter Meter";
   static String get releasePoint => "Release Point";
   static String get reachPoint => "Reach Point";
+
+  // Validators
+  static String get distance => "Distance";
 }
 
 class Images {

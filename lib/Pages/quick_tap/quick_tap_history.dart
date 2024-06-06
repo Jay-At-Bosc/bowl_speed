@@ -7,7 +7,7 @@ import 'package:bowl_speed/utils/labels.dart';
 
 
 import '../../utils/colors.dart';
-import '../../utils/constants.dart';
+
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/custom_card_row.dart';
 import '../../widgets/custom_lable_text.dart';
@@ -20,7 +20,7 @@ class QuickTapHistoryScreen extends GetView<QuickTapController> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: CustomAppBar(
-        title: StringConstants.historyTitle,
+        title: Labels.history,
         onBack: () {},
         onHistory: () {},
         isHistoryBtnVisible: false,

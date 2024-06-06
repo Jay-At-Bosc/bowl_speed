@@ -1,5 +1,4 @@
 import 'package:bowl_speed/services/controllers/bowler_controller.dart';
-import 'package:bowl_speed/utils/constants.dart';
 import 'package:bowl_speed/widgets/custom_app_bar.dart';
 import 'package:bowl_speed/widgets/custom_card_row.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../utils/colors.dart';
+import '../../utils/labels.dart';
 import '../../widgets/custom_lable_text.dart';
 import 'add_bowler_details.dart';
 
@@ -18,7 +18,7 @@ class BowlerDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: StringConstants.bowlerDetails,
+        title: Labels.bowlerDetails,
         onBack: () {},
         onHistory: () {},
         isHistoryBtnVisible: false,
@@ -27,7 +27,7 @@ class BowlerDetailScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
         child: SingleChildScrollView(
           child: GetBuilder<BowlerController>(
-              init: BowlerController(),
+              
               id: "bowler",
               builder: (ct) {
                 return Column(
@@ -67,21 +67,21 @@ class BowlerDetailScreen extends StatelessWidget {
                                                   "Bowler ${index + 1}"),
                                               const SizedBox(height: 16.0),
                                               _buildCustomCardRow(
-                                                  StringConstants.name,
+                                                  Labels.bowlerName,
                                                   ct.bowlerList[index].name
                                                       .capitalize!),
                                               _buildDivider(),
                                               _buildCustomCardRow(
-                                                  StringConstants.age,
+                                                  Labels.bowlerAge,
                                                   ct.bowlerList[index].age
                                                       .toString()),
                                               _buildDivider(),
                                               _buildCustomCardRow(
-                                                  StringConstants.bowlerType,
+                                                  Labels.bowlerType,
                                                   ct.bowlerList[index].type),
                                               _buildDivider(),
                                               _buildCustomCardRow(
-                                                  StringConstants.bowlerStyle,
+                                                  Labels.bowlerStyle,
                                                   ct.bowlerList[index].style),
                                             ],
                                           ),

@@ -2,22 +2,15 @@
 
 import 'dart:developer';
 
+import 'package:bowl_speed/services/controllers/quick_tap_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
-
 import '../../Pages/settings/custom_pitch_size_change_dialogue.dart';
-import '../../utils/labels.dart';
+import '../../utils/enums.dart';
 
-enum Sport {
-  cricket,
-  baseBall;
 
-  String getSportType(Sport sport) {
-    return sport == Sport.cricket ? Labels.cricket : Labels.baseBall;
-  }
-}
+
 
 class SettingsController extends GetxController {
   String get gameTypeId => "gameTypeId";
@@ -50,6 +43,8 @@ class SettingsController extends GetxController {
     // take controller instance and assign the value
     if (formKey.currentState!.validate()) {
       log("Cricet default pitch meter : ${cricketController.text}");
+      QuickTapController.instance.distance =
+          double.parse(cricketController.text);
     }
     Get.back();
   }
@@ -58,6 +53,8 @@ class SettingsController extends GetxController {
     // take controller instance and assign the value
     if (formKey.currentState!.validate()) {
       log("BaseBall default pitch meter : ${baseBallController.text}");
+      QuickTapController.instance.distance =
+          double.parse(cricketController.text);
     }
     Get.back();
   }

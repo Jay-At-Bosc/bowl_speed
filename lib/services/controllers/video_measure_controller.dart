@@ -36,7 +36,7 @@ class VideoMeasureController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    initializeVideoPlayer();
+    //initializeVideoPlayer();
   }
 
   Future<void> pickVideo() async {

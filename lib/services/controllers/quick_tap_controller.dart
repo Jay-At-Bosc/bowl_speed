@@ -39,8 +39,8 @@ class QuickTapController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    selectedBowler = BowlerController.instance.bowlerList.first.name;
-    update(['bowler']);
+    //selectedBowler = BowlerController.instance.bowlerList.first.name;
+    //update(['bowler']);
   }
 
   void selectBowler(String value) {
@@ -216,7 +216,6 @@ class QuickTapController extends GetxController {
           update([durationId, timerId]);
         },
         style: ElevatedButton.styleFrom(
-          
           foregroundColor: AppColors.textWhiteColor,
           backgroundColor: AppColors.primaryColor,
           shape: RoundedRectangleBorder(

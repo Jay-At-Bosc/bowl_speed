@@ -18,15 +18,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+   
 
-    final controller = Get.put(VideoMeasureController());
-    final quick = Get.put(QuickTapController());
-    final manual = Get.put(ManualCalculatorController());
-
+  
     return GetBuilder<VideoMeasureController>(
       builder: (controller) => Scaffold(
         backgroundColor: AppColors.textWhiteColor,

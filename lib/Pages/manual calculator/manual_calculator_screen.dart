@@ -1,10 +1,15 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
+
+import 'package:bowl_speed/Pages/manual%20calculator/manual_calc_history.dart';
+import 'package:bowl_speed/services/controllers/manual_calc_controller.dart';
+import 'package:bowl_speed/utils/validators.dart';
+import 'package:bowl_speed/widgets/custom_app_bar.dart';
+import 'package:bowl_speed/widgets/custom_menu_features.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../services/controllers/manual_calc_controller.dart';
 import '../../utils/labels.dart';
-import '../../utils/validators.dart';
-import '../../widgets/custom_app_bar.dart';
 import '../../widgets/custom_textformfield.dart';
 
 class ManualCalculatorScreen extends GetView<ManualCalculatorController> {
@@ -14,12 +19,9 @@ class ManualCalculatorScreen extends GetView<ManualCalculatorController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: Labels.manualCalculator,
-        onBack: () {},
-        onHistory: () {
-          ManualCalculatorController.instance.getHistory();
-        },
-      ),
+          title: Labels.manualCalculator,
+          onBack: () {},
+          onHistory: () => controller.getHistory()),
       body: GestureDetector(
         onTap: () {
           FocusScope.of(context).unfocus();
@@ -39,7 +41,7 @@ class ManualCalculatorScreen extends GetView<ManualCalculatorController> {
                     hintText: Labels.hintOfPitchSize,
                     validator: Validators.validatePitchSize,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 12,
                   ),
                   CustomTextFormField(
@@ -48,7 +50,7 @@ class ManualCalculatorScreen extends GetView<ManualCalculatorController> {
                     hintText: Labels.hintOfTimeOfTravel,
                     validator: Validators.validateTime,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 12,
                   ),
                   Center(
@@ -56,12 +58,12 @@ class ManualCalculatorScreen extends GetView<ManualCalculatorController> {
                       onPressed: () {
                         controller.calculateSpeed();
                       },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 255, 166, 0),
-                      ),
                       child: Text(
                         Labels.calculate,
-                        style: const TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 255, 166, 0),
                       ),
                     ),
                   ),

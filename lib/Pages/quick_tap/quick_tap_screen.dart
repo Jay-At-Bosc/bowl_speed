@@ -12,7 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../services/controllers/quick_tap_controller.dart';
-import '../../utils/constants.dart';
+
 import '../../widgets/custom_lable_text.dart';
 
 class QuickTapScreen extends StatelessWidget {
@@ -144,8 +144,7 @@ class QuickTapScreen extends StatelessWidget {
                               id: QuickTapController.durationId,
                               builder: (ctx) => Flexible(
                                 child: CustomLabelText(
-                                  label:
-                                      "${ctx.distance} ${StringConstants.meter}",
+                                  label: "${ctx.distance} ${Labels.meter}",
                                   style: GoogleFonts.rubik(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500),

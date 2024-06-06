@@ -10,7 +10,7 @@ Widget customElevatedButtonWithIcon(Function() onTap, String label,
     style: ElevatedButton.styleFrom(
       backgroundColor: bgColor,
       foregroundColor: fgColor,
-      // iconColor: fgColor,
+      iconColor: fgColor,
       padding: EdgeInsets.symmetric(horizontal: 14.0),
     ),
     child: Row(

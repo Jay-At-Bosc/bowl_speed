@@ -1,11 +1,14 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:bowl_speed/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../services/controllers/settings_controller.dart';
 import '../../utils/labels.dart';
+import '../../widgets/custom_menu_features.dart';
+import 'custom_radio_select_game.dart';
+import 'custom_tile_change_pitch.dart';
+
 
 class SettingsScreen extends GetView<SettingsController> {
   const SettingsScreen({super.key});
@@ -13,11 +16,16 @@ class SettingsScreen extends GetView<SettingsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        title: Labels.settings,
-        onBack: () {},
-        onHistory: () {},
-        isHistoryBtnVisible: false,
+      appBar: AppBar(
+        title: Text(
+          Labels.settings,
+          style: TextStyle(fontSize: 22.0, color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xff006769),
+        actions: [
+          CustomMenuFeatures(""),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -88,52 +96,5 @@ class SettingsScreen extends GetView<SettingsController> {
   }
 }
 
-class CustomTile extends StatelessWidget {
-  const CustomTile({super.key, required this.label, this.onTap});
 
-  final String label;
-  final void Function()? onTap;
 
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(label),
-      tileColor: Colors.amber[100],
-      trailing: Icon(Icons.arrow_forward_ios_rounded, size: 20),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      onTap: onTap,
-    );
-  }
-}
-
-class CustomRadioButton extends GetWidget<SettingsController> {
-  const CustomRadioButton(
-      {super.key, required this.value, required this.label});
-  final Sport value;
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return GetBuilder<SettingsController>(
-      id: controller.gameTypeId,
-      builder: (controller) {
-        return Row(
-          children: [
-            Radio<Sport>(
-              value: value,
-              groupValue: controller.selectedSport,
-              onChanged: (Sport? newValue) {
-                if (newValue != null) {
-                  controller.setSelectedSport(newValue);
-                }
-              },
-            ),
-            Text(label),
-          ],
-        );
-      },
-    );
-  }
-}

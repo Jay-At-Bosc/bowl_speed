@@ -5,7 +5,12 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../services/controllers/unit_conversion_controller.dart';
+
+import '../../utils/enums.dart';
+import '../../utils/formate_functions.dart';
 import '../../utils/labels.dart';
+import '../../utils/validators.dart';
+import '../../widgets/custom_menu_features.dart';
 import 'custom_input_dropdown.dart';
 import 'custom_output_dropdown.dart';
 
@@ -23,13 +28,7 @@ class UnitConversionScreen extends GetView<UnitConversionController> {
         centerTitle: true,
         backgroundColor: Color.fromARGB(226, 1, 74, 177),
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.more_vert_rounded,
-              color: Colors.white,
-            ),
-          ),
+          CustomMenuFeatures("Unit Conversion"),
         ],
       ),
       body: Padding(
@@ -46,19 +45,21 @@ class UnitConversionScreen extends GetView<UnitConversionController> {
               ),
 
               // Input Dropdown
-              CustomInputDropdown(
+              CustomInputDropdown<DistanceUnits>(
                 dropdownValue: controller.inputDistanceUnit,
-                dropdownItems: controller.distanceUnits,
+                dropdownItems: DistanceUnits.values.toList(),
                 dropdownonChanged: controller.updateInputDistanceUnit,
                 formController: controller.distanceController,
                 formOnChanged: controller.updateDistanceForm,
+                validator: Validators.validatePitchSize,
+                formKey: controller.distanceFormKey,
               ),
 
               // Output Dropdown
-              CustomOutputDropdown(
+              CustomOutputDropdown<DistanceUnits>(
                 dropdownValue: controller.outputDistanceUnit,
-                dropdownItems: controller.distanceUnits,
-                result: controller.distanceResult.toStringAsFixed(3),
+                dropdownItems: DistanceUnits.values.toList(),
+                result: formatDouble(controller.distanceResult),
                 dropdownonChanged: controller.updateOutputDistanceUnit,
               ),
               SizedBox(
@@ -72,18 +73,20 @@ class UnitConversionScreen extends GetView<UnitConversionController> {
               ),
 
               // Input Dropdown
-              CustomInputDropdown(
+              CustomInputDropdown<SpeedUnits>(
                 dropdownValue: controller.inputSpeedUnit,
-                dropdownItems: controller.speedUnits,
+                dropdownItems: SpeedUnits.values.toList(),
                 dropdownonChanged: controller.updateInputSpeedUnit,
                 formController: controller.speedController,
                 formOnChanged: controller.updateSpeedForm,
+                formKey: controller.speedFormKey,
+                validator: Validators.validateSpeed,
               ),
 
               // Output Dropdown
-              CustomOutputDropdown(
+              CustomOutputDropdown<SpeedUnits>(
                 dropdownValue: controller.outputSpeedUnit,
-                dropdownItems: controller.speedUnits,
+                dropdownItems: SpeedUnits.values.toList(),
                 result: controller.speedResult.toStringAsFixed(3),
                 dropdownonChanged: controller.updateOutputSpeedUnit,
               ),
@@ -94,4 +97,3 @@ class UnitConversionScreen extends GetView<UnitConversionController> {
     );
   }
 }
-

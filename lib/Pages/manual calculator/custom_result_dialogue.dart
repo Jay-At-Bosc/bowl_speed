@@ -49,9 +49,9 @@ void customResultDialogue(
         ElevatedButton(
           onPressed: () => ManualCalculatorController.instance.onSave(),
           style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xff006769),
-            foregroundColor: Colors.white,
-          ),
+              backgroundColor: Color(0xff006769),
+              foregroundColor: Colors.white,
+              iconColor: Colors.white),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [

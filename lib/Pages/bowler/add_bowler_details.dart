@@ -10,12 +10,12 @@ import '../../utils/formate_functions.dart';
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/custom_form_fields.dart';
 
-class AddBowlerDetails extends StatelessWidget {
+class AddBowlerDetails extends GetView<BowlerController> {
   const AddBowlerDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(BowlerController());
+   
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: CustomAppBar(
