@@ -1,14 +1,17 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:bowl_speed/utils/colors.dart';
+import 'package:bowl_speed/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../services/controllers/settings_controller.dart';
+import '../../utils/enums.dart';
 import '../../utils/labels.dart';
 import '../../widgets/custom_menu_features.dart';
 import 'custom_radio_select_game.dart';
 import 'custom_tile_change_pitch.dart';
-
 
 class SettingsScreen extends GetView<SettingsController> {
   const SettingsScreen({super.key});
@@ -16,16 +19,11 @@ class SettingsScreen extends GetView<SettingsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          Labels.settings,
-          style: TextStyle(fontSize: 22.0, color: Colors.white),
-        ),
-        centerTitle: true,
-        backgroundColor: Color(0xff006769),
-        actions: [
-          CustomMenuFeatures(""),
-        ],
+      appBar: CustomAppBar(
+        title: Labels.settings,
+        onBack: () {},
+        onHistory: () {},
+        isHistoryBtnVisible: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -35,7 +33,8 @@ class SettingsScreen extends GetView<SettingsController> {
             /// select Game
             Text(
               Labels.selectGameType,
-              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+              style:
+                  GoogleFonts.rubik(fontSize: 16, fontWeight: FontWeight.w500),
             ),
             SizedBox(
               height: 8.0,
@@ -44,7 +43,7 @@ class SettingsScreen extends GetView<SettingsController> {
             /// Two radio button options
             ListTile(
               contentPadding: EdgeInsets.zero,
-              tileColor: Colors.amber[100],
+              tileColor: AppColors.blueColor.withOpacity(0.15),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ),
@@ -75,7 +74,8 @@ class SettingsScreen extends GetView<SettingsController> {
             /// pitch size set label
             Text(
               Labels.setDefaultPitchmeter,
-              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+              style:
+                  GoogleFonts.rubik(fontSize: 16, fontWeight: FontWeight.w500),
             ),
             SizedBox(
               height: 4.0,
@@ -95,6 +95,3 @@ class SettingsScreen extends GetView<SettingsController> {
     );
   }
 }
-
-
-

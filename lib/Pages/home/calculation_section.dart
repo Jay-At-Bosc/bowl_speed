@@ -5,8 +5,9 @@ import 'package:iconsax/iconsax.dart';
 
 import '../../utils/labels.dart';
 import '../../widgets/custom_lable_text.dart';
-import '../manual calculator/manual_calculator_screen.dart';
-import '../unit conversion/unit_conversion_screen.dart';
+
+import '../manual_calculator/manual_calculator_screen.dart';
+import '../unit_conversion/unit_conversion_screen.dart';
 import 'conversion_icon_label.dart';
 
 class CalculationSection extends StatelessWidget {

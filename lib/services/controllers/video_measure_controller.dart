@@ -12,6 +12,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../pages/manual_calculator/custom_result_dialogue.dart';
 import '../../pages/video_measure/player.dart';
 import '../../utils/db_helper.dart';
 import '../../utils/formate_functions.dart';
@@ -33,11 +34,11 @@ class VideoMeasureController extends GetxController {
   late CustomVideoPlayerController customVideoPlayerController;
   late CachedVideoPlayerController cachedVideoPlayerController;
 
-  @override
-  void onInit() {
-    super.onInit();
-    //initializeVideoPlayer();
-  }
+  // @override
+  // void onInit() {
+  //   super.onInit();
+  //   //initializeVideoPlayer();
+  // }
 
   Future<void> pickVideo() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -72,33 +73,21 @@ class VideoMeasureController extends GetxController {
     showDialog();
   }
 
-  Future<dynamic> showDialog() {
-    return Get.defaultDialog(
-      title: "Bowl Speed",
-      middleText: "${speed.toStringAsFixed(1)} km/h",
-      textConfirm: Labels.save,
-      textCancel: Labels.cancel,
-      onConfirm: () async {
-        QuickTapModel model = QuickTapModel(
-            bowler: BowlerController.instance.bowlerList.first.name,
-            distance: 20,
-            time: formattedTime,
-            kmh: speed,
-            mps: speedInMph,
-            measurementType: Labels.videoTap,
-            date: formatDateTime(DateTime.now()));
-        await DatabaseHelper.instance.insertQuickTapCalculator(model);
-        Get.back();
-        Get.snackbar("Saved", "Recored Saved...");
-      },
-      confirmTextColor: AppColors.textWhiteColor,
-      cancelTextColor: AppColors.textDarkColor,
-      buttonColor: AppColors.primaryColor,
-      barrierDismissible: false,
-      radius: 1.0,
-      middleTextStyle: GoogleFonts.rubik(),
-      titleStyle: GoogleFonts.rubik(),
-    );
+  void showDialog() {
+    customResultDialogue('Result', "${speed.toStringAsFixed(1)} km/h",
+        () async {
+      QuickTapModel model = QuickTapModel(
+          bowler: BowlerController.instance.bowlerList.first.name,
+          distance: 20,
+          time: formattedTime,
+          kmh: speed,
+          mps: speedInMph,
+          measurementType: Labels.videoTap,
+          date: formatDateTime(DateTime.now()));
+      await DatabaseHelper.instance.insertQuickTapCalculator(model);
+      Get.back();
+      Get.snackbar("Saved", "Recored Saved...");
+    });
   }
 
   double calculateSpeedInKmPerHour(
@@ -221,8 +210,8 @@ class VideoMeasureController extends GetxController {
                     .videoPlayerController.value.position.inMilliseconds;
               },
               style: ElevatedButton.styleFrom(
-                foregroundColor: AppColors.textDarkColor.withOpacity(0.6),
-                backgroundColor: AppColors.yellowColor.withOpacity(0.8),
+                foregroundColor: AppColors.textWhiteColor.withOpacity(0.8),
+                backgroundColor: AppColors.orangeColor.withOpacity(0.6),
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
@@ -243,8 +232,8 @@ class VideoMeasureController extends GetxController {
                 showAlert();
               },
               style: ElevatedButton.styleFrom(
-                foregroundColor: AppColors.textDarkColor.withOpacity(0.6),
-                backgroundColor: AppColors.yellowColor.withOpacity(0.8),
+                foregroundColor: AppColors.textWhiteColor.withOpacity(0.8),
+                backgroundColor: AppColors.orangeColor.withOpacity(0.6),
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
@@ -327,14 +316,14 @@ class ControllIcons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(6),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: AppColors.yellowColor,
+        color: AppColors.orangeColor.withOpacity(0.6),
       ),
       child: Center(
         child: Icon(
           icon,
-          color: AppColors.textDarkColor.withOpacity(0.6),
+          color: AppColors.textWhiteColor.withOpacity(0.8),
           size: 24,
         ),
       ),

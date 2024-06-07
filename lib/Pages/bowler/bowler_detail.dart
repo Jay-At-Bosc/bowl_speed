@@ -27,7 +27,6 @@ class BowlerDetailScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
         child: SingleChildScrollView(
           child: GetBuilder<BowlerController>(
-              
               id: "bowler",
               builder: (ct) {
                 return Column(
@@ -52,7 +51,8 @@ class BowlerDetailScreen extends StatelessWidget {
                                     duration: const Duration(milliseconds: 300),
                                     width: double.infinity,
                                     decoration: BoxDecoration(
-                                      color: AppColors.containerColor,
+                                      color:
+                                          AppColors.blueColor.withOpacity(0.15),
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Stack(
@@ -106,11 +106,15 @@ class BowlerDetailScreen extends StatelessWidget {
                                                               3.1415926535897932,
                                                       child: InkWell(
                                                         onTap: () {
-                                                          ct.deteletBowler(ct
-                                                              .bowlerList[index]
-                                                              .id!, ct
-                                                              .bowlerList[index]
-                                                              .name);
+                                                          ct.deteletBowler(
+                                                              ct
+                                                                  .bowlerList[
+                                                                      index]
+                                                                  .id!,
+                                                              ct
+                                                                  .bowlerList[
+                                                                      index]
+                                                                  .name);
                                                         },
                                                         child: const Icon(
                                                           Icons.delete,
@@ -140,7 +144,7 @@ class BowlerDetailScreen extends StatelessWidget {
           Get.to(() => const AddBowlerDetails());
         },
         shape: const CircleBorder(),
-        backgroundColor: AppColors.primaryColor1.withOpacity(0.8),
+        backgroundColor: AppColors.orangeColor,
         child: const Icon(
           Iconsax.add,
           size: 34,

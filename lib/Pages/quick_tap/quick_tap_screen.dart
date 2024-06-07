@@ -41,7 +41,7 @@ class QuickTapScreen extends StatelessWidget {
               Container(
                 width: double.maxFinite,
                 decoration: BoxDecoration(
-                  color: AppColors.containerColor,
+                  color: AppColors.blueColor.withOpacity(0.15),
                   borderRadius: BorderRadius.circular(12.0),
                 ),
                 child: Padding(
@@ -251,7 +251,7 @@ class QuickTapScreen extends StatelessWidget {
                           fillColor: AppColors.containerColor,
                           fillGradient: null,
                           backgroundColor:
-                              AppColors.textBlueColor.withOpacity(0.9),
+                              AppColors.orangeColor.withOpacity(0.8),
                           backgroundGradient: null,
                           strokeWidth: 20.0,
                           strokeCap: StrokeCap.butt,
@@ -309,7 +309,7 @@ class QuickTapScreen extends StatelessWidget {
                                                 },
                                                 style: ElevatedButton.styleFrom(
                                                   backgroundColor: AppColors
-                                                      .textBlueColor
+                                                      .orangeColor
                                                       .withOpacity(0.9),
                                                   foregroundColor:
                                                       AppColors.textWhiteColor,
@@ -325,8 +325,8 @@ class QuickTapScreen extends StatelessWidget {
                                           ? controller.stopTimer
                                           : controller.startTimer,
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: AppColors.textBlueColor
-                                        .withOpacity(0.9),
+                                    backgroundColor:
+                                        AppColors.orangeColor.withOpacity(0.9),
                                     foregroundColor: AppColors.textWhiteColor,
                                   ),
                                   child: Text(

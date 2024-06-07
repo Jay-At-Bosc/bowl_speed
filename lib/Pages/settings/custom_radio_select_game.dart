@@ -1,8 +1,10 @@
-
+import 'package:bowl_speed/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../services/controllers/settings_controller.dart';
+import '../../utils/enums.dart';
 
 class CustomRadioButton extends GetWidget<SettingsController> {
   const CustomRadioButton(
@@ -19,6 +21,7 @@ class CustomRadioButton extends GetWidget<SettingsController> {
           children: [
             Radio<Sport>(
               value: value,
+              activeColor: AppColors.orangeColor,
               groupValue: controller.selectedSport,
               onChanged: (Sport? newValue) {
                 if (newValue != null) {
@@ -26,7 +29,10 @@ class CustomRadioButton extends GetWidget<SettingsController> {
                 }
               },
             ),
-            Text(label),
+            Text(
+              label,
+              style: GoogleFonts.rubik(),
+            ),
           ],
         );
       },

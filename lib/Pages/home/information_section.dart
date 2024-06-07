@@ -1,3 +1,4 @@
+import 'package:bowl_speed/services/controllers/quick_tap_controller.dart';
 import 'package:bowl_speed/utils/colors.dart';
 import 'package:bowl_speed/utils/labels.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../widgets/custom_rounded_icon.dart';
-import '../how to use/how_to_use_screen.dart';
+import '../how_to_use/how_to_use_screen.dart';
 import '../settings/settings_screen.dart';
 
 class InformationSection extends StatelessWidget {
@@ -17,8 +18,7 @@ class InformationSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-      decoration:
-          BoxDecoration(color: AppColors.containerColor.withOpacity(0.5)),
+      // decoration: BoxDecoration(color: AppColors.containerColor.withOpacity(1)),
       child: IntrinsicHeight(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -30,7 +30,7 @@ class InformationSection extends StatelessWidget {
               iconColor: AppColors.textWhiteColor.withOpacity(0.8),
               label: Labels.bowlerReport,
               onTap: () {
-                // Get.to(() => const BowlerRe());
+                QuickTapController.instance.generateBowlerReports();
               },
             ),
             CustomRoundedIcon(

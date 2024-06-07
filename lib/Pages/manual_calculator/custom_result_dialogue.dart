@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 void customResultDialogue(
   String title,
   String message,
+  Function() onPressed,
 ) {
   Get.dialog(
     AlertDialog(
@@ -47,11 +48,12 @@ void customResultDialogue(
       actionsAlignment: MainAxisAlignment.center,
       actions: [
         ElevatedButton(
-          onPressed: () => ManualCalculatorController.instance.onSave(),
+          onPressed: onPressed,
           style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xff006769),
-              foregroundColor: Colors.white,
-              iconColor: Colors.white),
+            backgroundColor: Color(0xff006769),
+            foregroundColor: Colors.white,
+            // iconColor: Colors.white,
+          ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [

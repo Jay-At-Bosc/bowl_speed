@@ -1,7 +1,7 @@
 import 'dart:async';
 
+import 'package:bowl_speed/pages/bowler/bowler_report.dart';
 import 'package:bowl_speed/pages/quick_tap/quick_tap_history.dart';
-import 'package:bowl_speed/services/controllers/bowler_controller.dart';
 import 'package:bowl_speed/services/models/quick_tap_model.dart';
 import 'package:bowl_speed/utils/colors.dart';
 import 'package:bowl_speed/utils/db_helper.dart';
@@ -11,6 +11,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
+
+import '../../pages/manual_calculator/custom_result_dialogue.dart';
+import '../models/bowler_report_model.dart';
 
 class QuickTapController extends GetxController {
   static QuickTapController get instance => Get.find();
@@ -33,14 +36,16 @@ class QuickTapController extends GetxController {
   double speedInKmph = 0.0;
   double speedInMph = 0.0;
   late List<QuickTapModel> historyList;
+  List<QuickTapModel> filterHistoryList = <QuickTapModel>[];
+  List<BowlerReport> bowlerReports = <BowlerReport>[];
+  List<BowlerReport> filterList = <BowlerReport>[];
 
   final CountDownController countDownController = CountDownController();
 
   @override
   void onInit() async {
     super.onInit();
-    //selectedBowler = BowlerController.instance.bowlerList.first.name;
-    //update(['bowler']);
+    generateBowlerReports();
   }
 
   void selectBowler(String value) {
@@ -98,52 +103,61 @@ class QuickTapController extends GetxController {
 
   void showResult() {
     calculateSpeed();
-    Get.defaultDialog(
-      titleStyle: GoogleFonts.rubik(fontSize: 18),
-      middleTextStyle: GoogleFonts.rubik(fontSize: 14),
-      barrierDismissible: false,
-      title: "Result",
-      middleText:
-          "${speedInKmph.toStringAsFixed(1)} km/h - ${speedInMph.toStringAsFixed(1)} mph",
-      confirm: ElevatedButton(
-        onPressed: () async {
-          QuickTapModel model = QuickTapModel(
-              bowler: selectedBowler,
-              distance: distance,
-              time: formattedTime,
-              kmh: speedInKmph,
-              mps: speedInMph,
-              measurementType: "Quick Tap",
-              date: formatDateTime(DateTime.now()));
-          await DatabaseHelper.instance.insertQuickTapCalculator(model);
-          Get.back();
-          Get.snackbar("Saved", "Recored Saved...");
-        },
-        style: ElevatedButton.styleFrom(
-          foregroundColor: AppColors.textWhiteColor,
-          backgroundColor: AppColors.primaryColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-        child: const Text("Save"),
-      ),
-      cancel: ElevatedButton(
-        onPressed: () {
-          Get.back();
-          countDownController.reset();
-          update([durationId, timerId]);
-        },
-        style: ElevatedButton.styleFrom(
-          foregroundColor: AppColors.textDarkColor,
-          backgroundColor: AppColors.textWhiteColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-        child: const Text("Cancel"),
-      ),
+    var result =
+        "${speedInKmph.toStringAsFixed(1)} km/h - ${speedInMph.toStringAsFixed(1)} mph";
+    customResultDialogue(
+      'Result',
+      result,
+      () async {
+        QuickTapModel model = QuickTapModel(
+            bowler: selectedBowler,
+            distance: distance,
+            time: formattedTime,
+            kmh: speedInKmph,
+            mps: speedInMph,
+            measurementType: "Quick Tap",
+            date: formatDateTime(DateTime.now()));
+        await DatabaseHelper.instance.insertQuickTapCalculator(model);
+        Get.back();
+        Get.snackbar("Saved", "Recored Saved...");
+      },
     );
+    // Get.defaultDialog(
+    //   titleStyle: GoogleFonts.rubik(fontSize: 18),
+    //   middleTextStyle: GoogleFonts.rubik(fontSize: 14),
+    //   barrierDismissible: false,
+    //   title: "Result",
+    //   middleText:
+    //       "${speedInKmph.toStringAsFixed(1)} km/h - ${speedInMph.toStringAsFixed(1)} mph",
+    //   confirm: ElevatedButton(
+    //     onPressed: () async {
+
+    //     },
+    //     style: ElevatedButton.styleFrom(
+    //       foregroundColor: AppColors.textWhiteColor,
+    //       backgroundColor: AppColors.primaryColor,
+    //       shape: RoundedRectangleBorder(
+    //         borderRadius: BorderRadius.circular(10),
+    //       ),
+    //     ),
+    //     child: const Text("Save"),
+    //   ),
+    //   cancel: ElevatedButton(
+    //     onPressed: () {
+    //       Get.back();
+    //       countDownController.reset();
+    //       update([durationId, timerId]);
+    //     },
+    //     style: ElevatedButton.styleFrom(
+    //       foregroundColor: AppColors.textDarkColor,
+    //       backgroundColor: AppColors.textWhiteColor,
+    //       shape: RoundedRectangleBorder(
+    //         borderRadius: BorderRadius.circular(10),
+    //       ),
+    //     ),
+    //     child: const Text("Cancel"),
+    //   ),
+    // );
   }
 
   void calculateSpeed() {
@@ -233,7 +247,73 @@ class QuickTapController extends GetxController {
 
   void getHistory() async {
     historyList = await DatabaseHelper.instance.readAllQuickTapCalcs();
+    filterHistoryList.addAll(historyList);
     update();
     Get.to(() => const QuickTapHistoryScreen());
+  }
+
+  void filterHistory(String value) {
+    if (value.isEmpty) {
+      filterHistoryList.assignAll(historyList);
+    } else {
+      filterHistoryList.assignAll(historyList
+          .where((element) =>
+              element.bowler.toLowerCase().contains(value.toLowerCase()))
+          .toList());
+    }
+    update();
+  }
+
+  void generateBowlerReports() async {
+    // Fetch all bowler data
+    List<QuickTapModel> bowlerHistory =
+        await DatabaseHelper.instance.readAllQuickTapCalcs();
+
+    //   data by bowler's name
+    Map<String, List<QuickTapModel>> groupedData = {};
+    for (var item in bowlerHistory) {
+      if (!groupedData.containsKey(item.bowler)) {
+        groupedData[item.bowler] = [];
+      }
+      groupedData[item.bowler]!.add(item);
+    }
+
+    // Calculate the reports for each bowler
+    List<BowlerReport> reports = [];
+    groupedData.forEach((name, history) {
+      double minSpeed =
+          history.map((item) => item.kmh).reduce((a, b) => a < b ? a : b);
+      double maxSpeed =
+          history.map((item) => item.kmh).reduce((a, b) => a > b ? a : b);
+      double avgSpeed =
+          history.map((item) => item.kmh).reduce((a, b) => a + b) /
+              history.length;
+
+      reports.add(BowlerReport(
+        name: name,
+        minSpeed: minSpeed,
+        avgSpeed: avgSpeed,
+        maxSpeed: maxSpeed,
+      ));
+    });
+
+    // Update the observable list
+    bowlerReports.assignAll(reports);
+    filterList.assignAll(bowlerReports);
+
+    update();
+    Get.to(() => const BowlerReportScreen());
+  }
+
+  void filterReports(String value) {
+    if (value.isEmpty) {
+      filterList.assignAll(bowlerReports);
+    } else {
+      filterList.assignAll(bowlerReports
+          .where((element) =>
+              element.name.toLowerCase().contains(value.toLowerCase()))
+          .toList());
+    }
+    update();
   }
 }

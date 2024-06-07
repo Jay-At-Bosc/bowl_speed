@@ -23,7 +23,7 @@ class ConversionIconLabel extends StatelessWidget {
           Icon(
             icon,
             size: 32,
-            color: AppColors.primaryColor1,
+            color: AppColors.orangeColor,
           ),
           const SizedBox(
             height: 6,

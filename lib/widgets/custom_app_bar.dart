@@ -18,7 +18,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
     required this.onBack,
     required this.onHistory,
-    this.color = AppColors.textBlueColor,
+    this.color = AppColors.orangeColor,
     this.isHistoryBtnVisible = true,
     this.isHome = false,
     // required this.popupMenuItems,

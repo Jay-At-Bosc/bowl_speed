@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bowl_speed/services/models/bowler_model.dart';
+import 'package:bowl_speed/services/models/quick_tap_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +13,7 @@ class BowlerController extends GetxController
 
   final formKey = GlobalKey<FormState>();
   List<BowlerDetails> bowlerList = [];
+  List<QuickTapModel> bowlerReport = [];
 
   TextEditingController nameController = TextEditingController();
   TextEditingController ageController = TextEditingController();
