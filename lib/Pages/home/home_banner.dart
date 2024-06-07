@@ -22,14 +22,14 @@ class HomeBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: Get.height * 0.47,
-      decoration: const BoxDecoration(color: AppColors.textBlueColor),
+      decoration: const BoxDecoration(color: AppColors.orangeColor),
       child: Stack(
         children: [
           Container(
             width: Get.width,
             height: Get.height * 0.46,
-            decoration: BoxDecoration(
-              color: AppColors.yellowColor.withOpacity(1),
+            decoration: const BoxDecoration(
+              color: AppColors.blueColor,
             ),
             child: Stack(
               children: [
@@ -50,7 +50,7 @@ class HomeBanner extends StatelessWidget {
                       style: GoogleFonts.rubik(
                           fontSize: 24,
                           fontWeight: FontWeight.w500,
-                          color: AppColors.textBlueColor.withOpacity(0.9)),
+                          color: AppColors.textWhiteColor),
                     ),
                   ),
                 ),
@@ -64,7 +64,7 @@ class HomeBanner extends StatelessWidget {
                       style: GoogleFonts.rubik(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
-                          color: AppColors.textBlueColor.withOpacity(0.6)),
+                          color: AppColors.textWhiteColor.withOpacity(0.9)),
                     ),
                   ),
                 ),
@@ -74,7 +74,8 @@ class HomeBanner extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () => Get.toNamed(Routes.bowlerDetails),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.textBlueColor.withOpacity(0.9),
+                      backgroundColor: AppColors.orangeColor,
+                      elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(100),
                       ),

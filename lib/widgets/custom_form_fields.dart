@@ -32,7 +32,7 @@ class CustomFormField extends StatelessWidget {
             label: label,
             style: GoogleFonts.rubik(
                 fontSize: 16,
-                color: AppColors.textDarkColor.withOpacity(0.7),
+                color: AppColors.blueColor.withOpacity(0.7),
                 fontWeight: FontWeight.w500),
           ),
           const SizedBox(height: 4),
@@ -42,18 +42,27 @@ class CustomFormField extends StatelessWidget {
                   keyboardType: keyboardType,
                   autofocus: false,
                   controller: controller,
-                  cursorColor: AppColors.primaryColor1,
+                  cursorColor: AppColors.blueColor,
                   cursorErrorColor: Colors.red,
+                  style: GoogleFonts.rubik(
+                      fontSize: 14,
+                      height: 1.3,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.blueColor.withOpacity(0.9)),
                   decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(
+                        vertical: 18.0, horizontal: 14),
                     hintText: label,
                     hintStyle: GoogleFonts.rubik(
                         fontSize: 14,
                         height: 1.3,
-                        color: AppColors.textDarkColor),
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.blueColor.withOpacity(0.6)),
                     filled: true,
                     fillColor: AppColors.containerColor,
                     border: OutlineInputBorder(
-                      borderSide: const BorderSide(color: AppColors.greenColor),
+                      borderSide: const BorderSide(
+                          color: AppColors.greenColor, width: 0.5),
                       borderRadius: BorderRadius.circular(14),
                     ),
                     focusedBorder: OutlineInputBorder(
@@ -78,4 +87,3 @@ class CustomFormField extends StatelessWidget {
     );
   }
 }
-

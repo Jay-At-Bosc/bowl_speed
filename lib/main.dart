@@ -26,6 +26,10 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   await DatabaseHelper.instance.database; // Ensure database is initialized
   // Get.put<MenuFeatureController>(MenuFeatureController());
   // Get.put<ManualCalculatorController>(ManualCalculatorController());

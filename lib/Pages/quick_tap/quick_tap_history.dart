@@ -10,6 +10,7 @@ import '../../utils/colors.dart';
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/custom_card_row.dart';
 import '../../widgets/custom_lable_text.dart';
+import '../bowler/bowler_report.dart';
 
 class QuickTapHistoryScreen extends GetView<QuickTapController> {
   const QuickTapHistoryScreen({super.key});

@@ -18,37 +18,38 @@ class CustomDropDown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
-        style: GoogleFonts.rubik(
-            color: AppColors.textDarkColor,
-            fontWeight: FontWeight.w400),
-        decoration: InputDecoration(
-          // labelText: 'Select an option',
-          filled: true,
-          fillColor: AppColors.containerColor,
-          border: OutlineInputBorder(
-            borderSide:
-                const BorderSide(color: AppColors.primaryColor1),
-            borderRadius: BorderRadius.circular(14),
-          ),
+      style: GoogleFonts.rubik(
+          color: AppColors.blueColor.withOpacity(0.9),
+          fontWeight: FontWeight.w500),
+      decoration: InputDecoration(
+        // labelText: 'Select an option',
+        filled: true,
+        fillColor: AppColors.containerColor,
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(color: AppColors.primaryColor1),
+          borderRadius: BorderRadius.circular(14),
         ),
-        value: list?[0],
-        onChanged: (String? newValue) {
-          if (label == Labels.bowlerType) {
-            BowlerController.instance
-                .setSelectedBowlerType(newValue!);
-          } else {
-            BowlerController.instance
-                .setSelectedBowlerStyle(newValue!);
-          }
-        },
-        items: list!.map<DropdownMenuItem<String>>((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(value),
-          );
-        }).toList(),
-        validator: (value) =>
-            value == null ? 'Please select an option' : null,
-      );
+        focusedBorder: OutlineInputBorder(
+          borderSide:
+              const BorderSide(color: AppColors.primaryColor1, width: 1),
+          borderRadius: BorderRadius.circular(14),
+        ),
+      ),
+      value: list?[0],
+      onChanged: (String? newValue) {
+        if (label == Labels.bowlerType) {
+          BowlerController.instance.setSelectedBowlerType(newValue!);
+        } else {
+          BowlerController.instance.setSelectedBowlerStyle(newValue!);
+        }
+      },
+      items: list!.map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+      validator: (value) => value == null ? 'Please select an option' : null,
+    );
   }
 }

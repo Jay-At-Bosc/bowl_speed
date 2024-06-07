@@ -70,7 +70,7 @@ class AddBowlerDetails extends GetView<BowlerController> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primaryColor1.withOpacity(0.8),
+                  backgroundColor: AppColors.orangeColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(100),
                   ),

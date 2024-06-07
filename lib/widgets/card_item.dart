@@ -60,7 +60,7 @@ class CardItem extends StatelessWidget {
                   const EdgeInsets.symmetric(horizontal: 22.0, vertical: 4.0)
                       .copyWith(top: 0, bottom: 0),
               decoration: BoxDecoration(
-                color: AppColors.yellowColor.withOpacity(0.18),
+                color: AppColors.blueColor.withOpacity(0.1),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(isReverse ? 18.0 : 38.0),
                   bottomLeft: Radius.circular(isReverse ? 18.0 : 38.0),
@@ -129,10 +129,13 @@ class CardItem extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: AppColors.textBlueColor.withOpacity(0.9),
+                  color: AppColors.orangeColor.withOpacity(0.9),
                 ),
                 child: Icon(
                   isReverse ? Iconsax.arrow_left : Iconsax.arrow_right_1,
+                  weight: 100,
+                  fill: 1,
+                  size: 24,
                   color: AppColors.textWhiteColor,
                 ),
               ),

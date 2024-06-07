@@ -1,12 +1,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
+import 'package:bowl_speed/services/controllers/manual_calc_controller.dart';
+import 'package:bowl_speed/utils/validators.dart';
+import 'package:bowl_speed/widgets/custom_app_bar.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../services/controllers/manual_calc_controller.dart';
+import '../../utils/colors.dart';
 import '../../utils/labels.dart';
-import '../../utils/validators.dart';
-import '../../widgets/custom_app_bar.dart';
 import '../../widgets/custom_textformfield.dart';
 
 class ManualCalculatorScreen extends GetView<ManualCalculatorController> {
@@ -37,7 +38,7 @@ class ManualCalculatorScreen extends GetView<ManualCalculatorController> {
                     hintText: Labels.hintOfPitchSize,
                     validator: Validators.validatePitchSize,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 12,
                   ),
                   CustomTextFormField(
@@ -46,18 +47,20 @@ class ManualCalculatorScreen extends GetView<ManualCalculatorController> {
                     hintText: Labels.hintOfTimeOfTravel,
                     validator: Validators.validateTime,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 12,
                   ),
                   Center(
                     child: ElevatedButton(
-                      onPressed: controller.calculateSpeed,
+                      onPressed: () {
+                        controller.calculateSpeed();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.orangeColor,
+                      ),
                       child: Text(
                         Labels.calculate,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 255, 166, 0),
+                        style: const TextStyle(color: Colors.white),
                       ),
                     ),
                   ),

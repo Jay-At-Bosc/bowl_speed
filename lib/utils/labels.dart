@@ -2,6 +2,7 @@ class Labels {
   //Quick Tap
   static String get quickTap => "Quick Tap";
   static String get bowlerName => "Bowler Name";
+  static String get chooseBowler => "Select Bowler";
   static String get speed => "Speed";
   static String get time => "Time";
   static const String quickTapMessage = "Measure bowling speed with stopwatch";
@@ -23,6 +24,11 @@ class Labels {
   static String get bowlerAge => "Bowler Age";
   static String get noBowlerFound => "No Bowler Found";
 
+  //Bowler Report
+  static String get minSpeed => "Min Speed";
+  static String get maxSpeed => "Max Speed";
+  static String get avgSpeed => "Avg Speed";
+
   /// Manual Calculator
   static String get manualCalculator => "Manual Calculator";
   static String get pitchSize => "Pitch Size (Meter)";
@@ -34,6 +40,7 @@ class Labels {
   static String get measurementType => "Measurement Type";
   static String get date => "Date";
   static String get history => "History";
+
   static String get historyNotFound => "No History Found";
 
   static const String speedKmh = "Speed Km/H :";
@@ -96,5 +103,5 @@ class Labels {
 }
 
 class Images {
-  static String get bannerImage => "assets/images/player5.png";
+  static String get bannerImage => "assets/images/player8.png";
 }

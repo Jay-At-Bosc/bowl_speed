@@ -8,8 +8,8 @@ import 'package:bowl_speed/utils/labels.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../Pages/manual calculator/custom_result_dialogue.dart';
-import '../../Pages/manual calculator/manual_calc_history.dart';
+import '../../pages/manual_calculator/custom_result_dialogue.dart';
+import '../../pages/manual_calculator/manual_calc_history.dart';
 import '../models/manual_calc_model.dart';
 import '../routes/app_pages.dart';
 
@@ -42,7 +42,7 @@ class ManualCalculatorController extends GetxController {
       speedMph = speedMps * 2.237;
       result =
           '${speedKmph.toStringAsFixed(3)} km/h - ${speedMph.toStringAsFixed(3)} mph';
-      customResultDialogue('Result', result);
+      customResultDialogue('Result', result, () => ManualCalculatorController.instance.onSave(),);
     }
   }
 

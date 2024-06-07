@@ -58,9 +58,9 @@ class BowlerDetailScreen extends StatelessWidget {
                                         _buildHeader("Bowler ${index + 1}"),
                                         const SizedBox(height: 16.0),
                                         _buildCustomCardRow(
-                                          Labels.bowlerName,
-                                          ct.bowlerList[index].name.capitalize!,
-                                        ),
+                                            Labels.bowlerName,
+                                            ct.bowlerList[index].name
+                                                .capitalize!),
                                         _buildDivider(),
                                         _buildCustomCardRow(
                                             Labels.bowlerAge,
@@ -123,7 +123,7 @@ class BowlerDetailScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () => Get.toNamed(Routes.addBowlerDetails),
         shape: const CircleBorder(),
-        backgroundColor: AppColors.primaryColor1.withOpacity(0.8),
+        backgroundColor: AppColors.orangeColor,
         child: const Icon(
           Iconsax.add,
           size: 34,

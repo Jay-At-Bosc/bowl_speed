@@ -26,7 +26,7 @@ class CustomRoundedIcon extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: AppColors.textBlueColor.withOpacity(0.9),
+              color: AppColors.orangeColor,
               borderRadius: BorderRadius.circular(50),
             ),
             child: Padding(
