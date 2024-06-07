@@ -15,13 +15,10 @@ class AddBowlerDetails extends GetView<BowlerController> {
 
   @override
   Widget build(BuildContext context) {
-   
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: CustomAppBar(
         title: Labels.addBowler,
-        onBack: () {},
-        onHistory: () {},
         isHistoryBtnVisible: false,
       ),
       body: Padding(
@@ -58,11 +55,12 @@ class AddBowlerDetails extends GetView<BowlerController> {
                 onPressed: () async {
                   if (controller.formKey.currentState!.validate()) {
                     BowlerDetails bowler = BowlerDetails(
-                        name: controller.nameController.text,
-                        age: int.parse(controller.ageController.text),
-                        type: controller.selectedBowlerType,
-                        style: controller.selectedBowlerStyle,
-                        date: formatDateTime(DateTime.now()));
+                      name: controller.nameController.text,
+                      age: int.parse(controller.ageController.text),
+                      type: controller.selectedBowlerType,
+                      style: controller.selectedBowlerStyle,
+                      date: formatDateTime(DateTime.now()),
+                    );
                     await DatabaseHelper.instance.insertBowlerDetails(bowler);
                     controller.getAllBowlers();
                   } else {

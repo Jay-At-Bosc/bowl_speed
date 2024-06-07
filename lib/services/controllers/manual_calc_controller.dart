@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import '../../Pages/manual calculator/custom_result_dialogue.dart';
 import '../../Pages/manual calculator/manual_calc_history.dart';
 import '../models/manual_calc_model.dart';
+import '../routes/app_pages.dart';
 
 class ManualCalculatorController extends GetxController {
   static ManualCalculatorController get instance =>
@@ -64,6 +65,6 @@ class ManualCalculatorController extends GetxController {
 
   void getHistory() async {
     historyList = await DatabaseHelper.instance.readAllManualCalcs();
-    Get.to(() => ManualCalcHistory());
+    Get.toNamed(Routes.manualCalcHistory);
   }
 }

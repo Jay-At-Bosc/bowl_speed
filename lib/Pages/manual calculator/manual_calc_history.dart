@@ -18,12 +18,9 @@ class ManualCalcHistory extends GetView<ManualCalculatorController> {
     return Scaffold(
       appBar: CustomAppBar(
         title: Labels.history,
-        onBack: () {},
-        onHistory: () {},
-        isHistoryBtnVisible: false,
       ),
       body: controller.historyList.isEmpty
-          ? Center(child: Text("No History Found"))
+          ? Center(child: Text(Labels.historyNotFound))
           : ListView.builder(
               itemCount: controller.historyList.length,
               itemBuilder: (context, index) {

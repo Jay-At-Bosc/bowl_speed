@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../services/controllers/quick_tap_controller.dart';
+import '../../services/routes/app_pages.dart';
 import '../../utils/colors.dart';
 import '../../utils/labels.dart';
 import '../../widgets/custom_app_bar.dart';
@@ -33,13 +34,11 @@ class HomeBanner extends StatelessWidget {
             child: Stack(
               children: [
                 CustomAppBar(
-                  color: AppColors.yellowColor.withOpacity(0.1),
                   title: "",
                   isHome: true,
-                  onBack: () {},
-                  onHistory: () {
-                    QuickTapController.instance.getHistory();
-                  },
+                  isBack: false,
+                  isHistoryBtnVisible: true,
+                  onHistory: QuickTapController.instance.getHistory,
                 ),
                 Positioned(
                   top: 60,
@@ -73,9 +72,7 @@ class HomeBanner extends StatelessWidget {
                   top: 200,
                   left: 20,
                   child: ElevatedButton(
-                    onPressed: () {
-                      Get.to(() => const BowlerDetailScreen());
-                    },
+                    onPressed: () => Get.toNamed(Routes.bowlerDetails),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.textBlueColor.withOpacity(0.9),
                       shape: RoundedRectangleBorder(
@@ -100,7 +97,6 @@ class HomeBanner extends StatelessWidget {
             bottom: 0,
             child: Image.asset(
               Images.bannerImage,
-              // color: AppColors.textBlueColor.withOpacity(0.6),
               fit: BoxFit.cover,
               height: Get.height * 0.34,
             ),

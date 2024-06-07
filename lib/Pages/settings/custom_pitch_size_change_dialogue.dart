@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../services/routes/app_routes.dart';
 import '../../utils/labels.dart';
 import '../../utils/validators.dart';
 import '../../widgets/custom_elevated_button_with_icon.dart';
@@ -35,7 +36,7 @@ void customPitchSizeChangeDialog(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           customElevatedButtonWithIcon(
-            () => Get.back(),
+            ()=> AppPages.back,
             Labels.cancel,
             Colors.grey,
             Colors.black,

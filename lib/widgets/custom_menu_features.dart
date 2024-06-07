@@ -4,14 +4,17 @@ import 'package:bowl_speed/services/controllers/menu_feature_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../utils/colors.dart';
+
 class CustomMenuFeatures extends GetView<MenuFeatureController> {
-  const CustomMenuFeatures(this.message, {super.key});
-  final String message;
+  const CustomMenuFeatures( {super.key,this.message,required this.isHome,});
+  final String? message;
+  final bool isHome;
 
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<String>(
-      iconColor: Colors.white,
+      iconColor: isHome ? AppColors.textBlueColor : AppColors.textWhiteColor,
       onSelected: (String result) {
         switch (result) {
           case 'Rate Us':

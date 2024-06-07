@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../services/controllers/settings_controller.dart';
+import '../../utils/enums.dart';
 import '../../utils/labels.dart';
-import '../../widgets/custom_menu_features.dart';
+import '../../widgets/custom_app_bar.dart';
 import 'custom_radio_select_game.dart';
 import 'custom_tile_change_pitch.dart';
-
 
 class SettingsScreen extends GetView<SettingsController> {
   const SettingsScreen({super.key});
@@ -16,16 +16,8 @@ class SettingsScreen extends GetView<SettingsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          Labels.settings,
-          style: TextStyle(fontSize: 22.0, color: Colors.white),
-        ),
-        centerTitle: true,
-        backgroundColor: Color(0xff006769),
-        actions: [
-          CustomMenuFeatures(""),
-        ],
+      appBar: CustomAppBar(
+        title: Labels.settings,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -83,18 +75,15 @@ class SettingsScreen extends GetView<SettingsController> {
 
             /// pitch size set
             CustomTile(
-                label: Labels.cricket, onTap: () => controller.onCricket()),
+                label: Labels.cricket, onTap: controller.onCricket),
             SizedBox(
               height: 8.0,
             ),
             CustomTile(
-                label: Labels.baseBall, onTap: () => controller.onBaseBall()),
+                label: Labels.baseBall, onTap: controller.onBaseBall),
           ],
         ),
       ),
     );
   }
 }
-
-
-

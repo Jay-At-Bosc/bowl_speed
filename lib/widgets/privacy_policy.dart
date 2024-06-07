@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors, non_constant_identifier_names
 
+import 'package:bowl_speed/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:get/get.dart';
+
+import '../utils/labels.dart';
 
 class PrivacyPolicy extends StatelessWidget {
   const PrivacyPolicy({super.key});
@@ -10,19 +12,8 @@ class PrivacyPolicy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            onPressed: () => Get.back(),
-            icon: Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            )),
-        title: Text(
-          'Privacy Policy',
-          style: GoogleFonts.rubik(color: Colors.white, fontSize: 22),
-        ),
-        centerTitle: true,
-        backgroundColor: Color(0xff006769),
+      appBar: CustomAppBar(
+        title: Labels.privacyPolicy,
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),

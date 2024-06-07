@@ -6,7 +6,6 @@ import 'package:bowl_speed/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 import '../../services/controllers/quick_tap_controller.dart'; // Import for SystemChrome
 
 class Player extends GetView<VideoMeasureController> {
@@ -26,13 +25,10 @@ class Player extends GetView<VideoMeasureController> {
     return Scaffold(
       backgroundColor: AppColors.textDarkColor,
       appBar: CustomAppBar(
-          title: Labels.videoTitle,
-          onBack: () {
-            Get.back();
-          },
-          onHistory: () {
-            QuickTapController.instance.getHistory();
-          }),
+        title: Labels.videoTitle,
+        isHistoryBtnVisible: true,
+        onHistory: QuickTapController.instance.getHistory,
+      ),
       body: GetBuilder<VideoMeasureController>(builder: (context) {
         return Center(
           child: CustomVideoPlayer(

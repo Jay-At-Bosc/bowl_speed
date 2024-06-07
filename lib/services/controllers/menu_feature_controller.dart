@@ -6,7 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:get/get.dart';
 
-import '../../widgets/privacy_policy.dart';
+import '../routes/app_pages.dart';
 
 class MenuFeatureController extends GetxController {
   String playStore =
@@ -25,14 +25,15 @@ class MenuFeatureController extends GetxController {
     }
   }
 
-  void shareApp(String data) {
+  void shareApp(String? data) {
     log("share app");
     url = onAndroid();
+    message = data ?? message;
     Share.share("$message\n App Link: $url");
   }
 
   void openPrivacyPolicy() {
-    Get.to(() => PrivacyPolicy());
+    Get.toNamed(Routes.privacyPolicy);
   }
 
   String onAndroid() {

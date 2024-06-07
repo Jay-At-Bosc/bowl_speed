@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../services/controllers/video_measure_controller.dart';
+import '../../services/routes/app_pages.dart';
 import '../../utils/colors.dart';
 import '../../utils/labels.dart';
 import '../../widgets/card_item.dart';
-import '../quick_tap/quick_tap_screen.dart';
 
 class MenuSectionCard extends StatelessWidget {
   const MenuSectionCard({
@@ -28,11 +29,7 @@ class MenuSectionCard extends StatelessWidget {
                 title: Labels.quickTap,
                 message: Labels.quickTapMessage,
                 isReverse: false,
-                onTap: () {
-                  Get.to(() => const QuickTapScreen(),
-                      transition: Transition.leftToRight,
-                      duration: const Duration(milliseconds: 500));
-                },
+                onTap: () => Get.toNamed(Routes.quickTapCalc),
               ),
             ),
             const SizedBox(
@@ -43,9 +40,7 @@ class MenuSectionCard extends StatelessWidget {
                 title: Labels.importVideo,
                 message: Labels.videoMessage,
                 isReverse: true,
-                onTap: () {
-                  VideoMeasureController.instance.pickVideo();
-                },
+                onTap: VideoMeasureController.instance.pickVideo,
               ),
             ),
           ],

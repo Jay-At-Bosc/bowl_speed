@@ -1,60 +1,63 @@
-import 'package:bowl_speed/widgets/menu_item.dart';
+// ignore_for_file: prefer_const_constructors
+
+import 'package:bowl_speed/services/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import '../utils/colors.dart';
+import 'custom_menu_features.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final VoidCallback onBack;
-  final Function onHistory;
-  final Color color;
-  final bool? isHistoryBtnVisible;
+  final bool isBack;
+  final Function()? onHistory;
+  final bool isHistoryBtnVisible;
   final bool isHome;
-  // final List<PopupMenuEntry> popupMenuItems;
+  final String? message;
 
   const CustomAppBar({
     super.key,
     required this.title,
-    required this.onBack,
-    required this.onHistory,
-    this.color = AppColors.textBlueColor,
-    this.isHistoryBtnVisible = true,
+    this.isBack = true,
+    this.onHistory,
+    this.isHistoryBtnVisible = false,
     this.isHome = false,
-    // required this.popupMenuItems,
+    this.message,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: true,
-      backgroundColor: color,
+      backgroundColor: isHome ? AppColors.yellowColor : AppColors.textBlueColor,
       foregroundColor: AppColors.textWhiteColor,
       title: Text(
         title,
         style: GoogleFonts.rubik(),
       ),
+      automaticallyImplyLeading: false,
+      leading: isBack
+          ? IconButton(
+              onPressed: () => AppPages.back,
+              icon: Icon(
+                Icons.arrow_back_ios_rounded,
+                color: AppColors.textWhiteColor,
+              ),
+            )
+          : null,
       actions: [
-        if (isHistoryBtnVisible == true)
+        if (isHistoryBtnVisible)
           IconButton(
-            onPressed: () {
-              onHistory();
-            },
+            onPressed: onHistory,
             icon: Icon(
               Iconsax.timer_start,
               color:
                   isHome ? AppColors.textBlueColor : AppColors.textWhiteColor,
             ),
           ),
-        PopupMenuButton(
-          iconColor:
-              isHome ? AppColors.textBlueColor : AppColors.textWhiteColor,
-          itemBuilder: (context) => [
-            buildMenuItem('Rate us', () {}),
-            buildMenuItem('Share app', () {}),
-            buildMenuItem('Contact us', () {}),
-            buildMenuItem('Privacy Policy', () {}),
-          ],
+        CustomMenuFeatures(
+          isHome: isHome,
+          message: message,
         ),
       ],
     );

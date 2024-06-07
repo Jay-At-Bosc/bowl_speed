@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:bowl_speed/services/controllers/quick_tap_controller.dart';
 import 'package:bowl_speed/utils/labels.dart';
 
-
 import '../../utils/colors.dart';
 
 import '../../widgets/custom_app_bar.dart';
@@ -21,66 +20,58 @@ class QuickTapHistoryScreen extends GetView<QuickTapController> {
       resizeToAvoidBottomInset: false,
       appBar: CustomAppBar(
         title: Labels.history,
-        onBack: () {},
-        onHistory: () {},
-        isHistoryBtnVisible: false,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              controller.historyList.isNotEmpty
-                  ? ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: controller.historyList.length,
-                      itemBuilder: (context, index) {
-                        final history = controller.historyList[index];
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 16.0),
-                          child: Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: AppColors.containerColor,
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  _buildHeader(history.bowler),
-                                  const SizedBox(height: 16.0),
-                                  _buildCustomCardRow("${Labels.pitchSize} :",
-                                      history.distance.toString()),
-                                  _buildDivider(),
-                                  _buildCustomCardRow(
-                                      "${Labels.timeOfTravel} :", history.time),
-                                  _buildDivider(),
-                                  _buildCustomCardRow(Labels.speedKmh,
-                                      history.kmh.toStringAsFixed(2)),
-                                  _buildDivider(),
-                                  _buildCustomCardRow(Labels.speedMhp,
-                                      history.mps.toStringAsFixed(2)),
-                                  _buildDivider(),
-                                  _buildCustomCardRow(
-                                      "${Labels.measurementType} :",
-                                      history.measurementType),
-                                  _buildDivider(),
-                                  _buildCustomCardRow(
-                                      "${Labels.date} :", history.date),
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    )
-                  : const Text("Not Found"),
-            ],
-          ),
-        ),
+        child: controller.historyList.isNotEmpty
+            ? ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: controller.historyList.length,
+                itemBuilder: (context, index) {
+                  final history = controller.historyList[index];
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: AppColors.containerColor,
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _buildHeader(history.bowler),
+                            const SizedBox(height: 16.0),
+                            _buildCustomCardRow("${Labels.pitchSize} :",
+                                history.distance.toString()),
+                            _buildDivider(),
+                            _buildCustomCardRow(
+                                "${Labels.timeOfTravel} :", history.time),
+                            _buildDivider(),
+                            _buildCustomCardRow(Labels.speedKmh,
+                                history.kmh.toStringAsFixed(2)),
+                            _buildDivider(),
+                            _buildCustomCardRow(Labels.speedMhp,
+                                history.mps.toStringAsFixed(2)),
+                            _buildDivider(),
+                            _buildCustomCardRow("${Labels.measurementType} :",
+                                history.measurementType),
+                            _buildDivider(),
+                            _buildCustomCardRow(
+                                "${Labels.date} :", history.date),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              )
+            : Center(
+                child: Text(Labels.historyNotFound),
+              ),
       ),
     );
   }

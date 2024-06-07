@@ -1,10 +1,7 @@
 // ignore_for_file: unused_local_variable
-
-import 'package:bowl_speed/services/controllers/manual_calc_controller.dart';
-import 'package:bowl_speed/services/controllers/quick_tap_controller.dart';
 import 'package:bowl_speed/utils/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:get/get.dart';
 
 import '../../services/controllers/video_measure_controller.dart';
@@ -18,9 +15,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
-
-  
     return GetBuilder<VideoMeasureController>(
       builder: (controller) => Scaffold(
         backgroundColor: AppColors.textWhiteColor,

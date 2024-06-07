@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../services/controllers/settings_controller.dart';
+import '../../utils/enums.dart';
 
 class CustomRadioButton extends GetWidget<SettingsController> {
   const CustomRadioButton(

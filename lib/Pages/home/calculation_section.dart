@@ -3,10 +3,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../services/routes/app_pages.dart';
 import '../../utils/labels.dart';
 import '../../widgets/custom_lable_text.dart';
-import '../manual calculator/manual_calculator_screen.dart';
-import '../unit conversion/unit_conversion_screen.dart';
 import 'conversion_icon_label.dart';
 
 class CalculationSection extends StatelessWidget {
@@ -17,8 +16,7 @@ class CalculationSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20.0)
-          .copyWith(bottom: 14),
+      padding: const EdgeInsets.symmetric(vertical: 20.0).copyWith(bottom: 14),
       child: Column(
         children: [
           CustomLabelText(
@@ -38,21 +36,16 @@ class CalculationSection extends StatelessWidget {
                 icon: Iconsax.add_square,
                 label: Labels.manualCalculator,
                 onTap: () {
-                  Get.to(() => const ManualCalculatorScreen());
+                  Get.toNamed(Routes.manualCalculator);
                 },
               ),
               ConversionIconLabel(
                 icon: Iconsax.arrow_swap_horizontal,
                 label: Labels.unitConversion,
-                onTap: () {
-                  Get.to(() => const UnitConversionScreen());
-                },
+                onTap: () => Get.toNamed(Routes.unitConversion),
               ),
             ],
           ),
-          // const SizedBox(
-          //   height: 50,
-          // )
         ],
       ),
     );

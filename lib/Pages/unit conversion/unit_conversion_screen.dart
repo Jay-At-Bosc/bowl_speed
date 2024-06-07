@@ -10,6 +10,7 @@ import '../../utils/enums.dart';
 import '../../utils/formate_functions.dart';
 import '../../utils/labels.dart';
 import '../../utils/validators.dart';
+import '../../widgets/custom_app_bar.dart';
 import '../../widgets/custom_menu_features.dart';
 import 'custom_input_dropdown.dart';
 import 'custom_output_dropdown.dart';
@@ -20,20 +21,13 @@ class UnitConversionScreen extends GetView<UnitConversionController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          Labels.unitConversion,
-          style: GoogleFonts.rubik(color: Colors.white),
-        ),
-        centerTitle: true,
-        backgroundColor: Color.fromARGB(226, 1, 74, 177),
-        actions: [
-          CustomMenuFeatures("Unit Conversion"),
-        ],
+      appBar: CustomAppBar(
+        title: Labels.unitConversion,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: GetBuilder<UnitConversionController>(builder: (context) {
+        child: GetBuilder<UnitConversionController>(
+          builder: (context) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,

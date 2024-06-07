@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../services/routes/app_pages.dart';
 import '../../widgets/custom_rounded_icon.dart';
-import '../how to use/how_to_use_screen.dart';
-import '../settings/settings_screen.dart';
 
 class InformationSection extends StatelessWidget {
   const InformationSection({
@@ -37,17 +36,13 @@ class InformationSection extends StatelessWidget {
               icon: Iconsax.setting_2,
               iconColor: AppColors.textWhiteColor.withOpacity(0.8),
               label: Labels.settings,
-              onTap: () {
-                Get.to(() => const SettingsScreen());
-              },
+              onTap: () => Get.toNamed(Routes.settings),
             ),
             CustomRoundedIcon(
               icon: Iconsax.info_circle,
               iconColor: AppColors.textWhiteColor.withOpacity(0.8),
               label: Labels.howToUse,
-              onTap: () {
-                Get.to(() => const HowToUseScreen());
-              },
+              onTap: () => Get.toNamed(Routes.howToUse),
             ),
           ],
         ),

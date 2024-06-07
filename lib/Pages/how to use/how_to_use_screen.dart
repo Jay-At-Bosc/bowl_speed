@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:bowl_speed/utils/labels.dart';
-import 'package:bowl_speed/widgets/custom_menu_features.dart';
+import 'package:bowl_speed/widgets/custom_app_bar.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -11,16 +12,9 @@ class HowToUseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'How to use',
-          style: GoogleFonts.rubik(color: Colors.white, fontSize: 22),
-        ),
-        centerTitle: true,
-        backgroundColor: Color(0xff053ac3),
-        actions: [
-          CustomMenuFeatures(""),
-        ],
+      appBar: CustomAppBar(
+        title: Labels.howToUse, 
+        isHistoryBtnVisible: false
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -62,11 +56,11 @@ class HowToUseScreen extends StatelessWidget {
   Widget customButton(String title) {
     return ElevatedButton(
       onPressed: () {},
-      child: Text(title),
       style: ElevatedButton.styleFrom(
         backgroundColor: Color(0xff62C201),
         foregroundColor: Colors.white,
       ),
+      child: Text(title),
     );
   }
 }

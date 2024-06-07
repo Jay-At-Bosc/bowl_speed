@@ -1,4 +1,6 @@
 
+import 'package:get/get.dart';
+
 class Constants {
   /// Distance Constants
   static const double meterToKilometer = 0.001;
@@ -66,5 +68,10 @@ class Constants {
     "nauticalMilesPerHourTomilesPerHour":
         1 / Constants.milesPerHourToNauticalMilesPerHour,
   };
+
+  static Transition get leftToright => Transition.leftToRight;
+  static Transition get rightToleft => Transition.rightToLeft;
+  static Transition get bottomToup => Transition.downToUp;
+  static Duration get transitionDuration => const Duration(milliseconds: 300);
 
 } // Constants

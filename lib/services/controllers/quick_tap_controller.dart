@@ -12,6 +12,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../routes/app_pages.dart';
+
 class QuickTapController extends GetxController {
   static QuickTapController get instance => Get.find();
 
@@ -234,6 +236,6 @@ class QuickTapController extends GetxController {
   void getHistory() async {
     historyList = await DatabaseHelper.instance.readAllQuickTapCalcs();
     update();
-    Get.to(() => const QuickTapHistoryScreen());
+    Get.toNamed(Routes.quickTapCalcHistory);
   }
 }

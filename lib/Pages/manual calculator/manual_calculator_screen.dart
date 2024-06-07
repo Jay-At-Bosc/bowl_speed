@@ -1,15 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
 
-import 'package:bowl_speed/Pages/manual%20calculator/manual_calc_history.dart';
-import 'package:bowl_speed/services/controllers/manual_calc_controller.dart';
-import 'package:bowl_speed/utils/validators.dart';
-import 'package:bowl_speed/widgets/custom_app_bar.dart';
-import 'package:bowl_speed/widgets/custom_menu_features.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../services/controllers/manual_calc_controller.dart';
 import '../../utils/labels.dart';
+import '../../utils/validators.dart';
+import '../../widgets/custom_app_bar.dart';
 import '../../widgets/custom_textformfield.dart';
 
 class ManualCalculatorScreen extends GetView<ManualCalculatorController> {
@@ -20,12 +17,11 @@ class ManualCalculatorScreen extends GetView<ManualCalculatorController> {
     return Scaffold(
       appBar: CustomAppBar(
           title: Labels.manualCalculator,
-          onBack: () {},
-          onHistory: () => controller.getHistory()),
+          isHistoryBtnVisible: true,
+          onHistory: controller.getHistory,
+         ),
       body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).unfocus();
-        },
+        onTap: FocusScope.of(context).unfocus,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
@@ -55,9 +51,7 @@ class ManualCalculatorScreen extends GetView<ManualCalculatorController> {
                   ),
                   Center(
                     child: ElevatedButton(
-                      onPressed: () {
-                        controller.calculateSpeed();
-                      },
+                      onPressed: controller.calculateSpeed,
                       child: Text(
                         Labels.calculate,
                         style: TextStyle(color: Colors.white),

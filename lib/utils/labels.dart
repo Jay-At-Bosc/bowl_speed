@@ -21,6 +21,7 @@ class Labels {
   static String get bowlerStyle => "Bowler Style";
   static String get bowlerType => "Bowler Type";
   static String get bowlerAge => "Bowler Age";
+  static String get noBowlerFound => "No Bowler Found";
 
   /// Manual Calculator
   static String get manualCalculator => "Manual Calculator";
@@ -89,6 +90,9 @@ class Labels {
 
   // Validators
   static String get distance => "Distance";
+
+  static String get privacyPolicy => "Privacy Policy";
+  
 }
 
 class Images {

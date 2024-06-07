@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:bowl_speed/Pages/bowler/add_bowler_details.dart';
 import 'package:bowl_speed/services/controllers/bowler_controller.dart';
 import 'package:bowl_speed/services/models/bowler_model.dart';
+import 'package:bowl_speed/services/routes/app_routes.dart';
 import 'package:bowl_speed/utils/colors.dart';
 import 'package:bowl_speed/utils/labels.dart';
 import 'package:bowl_speed/widgets/custom_app_bar.dart';
@@ -13,6 +14,7 @@ import 'package:iconsax/iconsax.dart';
 
 import '../../services/controllers/quick_tap_controller.dart';
 
+import '../../services/routes/app_pages.dart';
 import '../../widgets/custom_lable_text.dart';
 
 class QuickTapScreen extends StatelessWidget {
@@ -28,10 +30,8 @@ class QuickTapScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: CustomAppBar(
         title: Labels.quickTap,
-        onBack: () {},
-        onHistory: () {
-          QuickTapController.instance.getHistory();
-        },
+        isHistoryBtnVisible: true,
+        onHistory: QuickTapController.instance.getHistory,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
@@ -301,11 +301,9 @@ class QuickTapScreen extends StatelessWidget {
                                                   "Please Add Bolwers First",
                                               confirm: ElevatedButton(
                                                 onPressed: () {
-                                                  Get.back();
-                                                  Get.to(
-                                                    () =>
-                                                        const AddBowlerDetails(),
-                                                  );
+                                                  AppPages.back;
+                                                  Get.toNamed(
+                                                      Routes.addBowlerDetails);
                                                 },
                                                 style: ElevatedButton.styleFrom(
                                                   backgroundColor: AppColors
