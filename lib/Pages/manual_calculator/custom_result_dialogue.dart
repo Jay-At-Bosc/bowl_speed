@@ -1,9 +1,14 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:bowl_speed/services/controllers/manual_calc_controller.dart';
+
+import 'package:bowl_speed/services/controllers/menu_feature_controller.dart';
+
+import 'package:bowl_speed/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../utils/labels.dart';
 
 void customResultDialogue(
   String title,
@@ -11,9 +16,10 @@ void customResultDialogue(
   Function() onPressed,
 ) {
   Get.dialog(
+    barrierDismissible: false,
     AlertDialog(
       title: AppBar(
-        title: Text('RESULT'),
+        title: Text(Labels.result),
         centerTitle: true,
         automaticallyImplyLeading: false,
         actions: [
@@ -21,7 +27,7 @@ void customResultDialogue(
             alignment: Alignment.topCenter,
             icon: Icon(
               Icons.cancel_outlined,
-              color: Colors.grey,
+              color: AppColors.orangeColor,
               size: 30,
             ),
             onPressed: () {
@@ -47,24 +53,49 @@ void customResultDialogue(
       ),
       actionsAlignment: MainAxisAlignment.center,
       actions: [
-        ElevatedButton(
-          onPressed: onPressed,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xff006769),
-            foregroundColor: Colors.white,
-            // iconColor: Colors.white,
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(Icons.check_circle_outlined, color: Colors.white),
-              SizedBox(width: 4),
-              Text(
-                "save",
-                style: GoogleFonts.rubik(color: Colors.white, fontSize: 16),
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            ElevatedButton(
+              onPressed: () => MenuFeatureController.instance.shareApp(""),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                foregroundColor: AppColors.orangeColor,
+                iconColor: AppColors.orangeColor,
               ),
-            ],
-          ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.share),
+                  SizedBox(width: 4),
+                  Text(
+                    Labels.save,
+                    style: GoogleFonts.rubik(fontSize: 16),
+                  ),
+                ],
+              ),
+            ),
+            Spacer(),
+            ElevatedButton(
+              onPressed: onPressed,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.orangeColor,
+                foregroundColor: Colors.white,
+                iconColor: Colors.white,
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.check_circle_outlined),
+                  SizedBox(width: 4),
+                  Text(
+                    Labels.save,
+                    style: GoogleFonts.rubik(fontSize: 16),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ],
     ),

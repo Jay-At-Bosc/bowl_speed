@@ -13,6 +13,7 @@ import '../../utils/enums.dart';
 
 
 class SettingsController extends GetxController {
+  static SettingsController instance = Get.find<SettingsController>();
   String get gameTypeId => "gameTypeId";
 
   TextEditingController cricketController = TextEditingController();

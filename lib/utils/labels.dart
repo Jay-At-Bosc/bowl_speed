@@ -83,6 +83,7 @@ class Labels {
   static String get finish => "Finish";
   static String get addBowler => "Add Bowler";
   static String get bowlerDetails => "Bowler Detail";
+  static String get result => "Result";
 
   /// Settings
   static String get settings => "Settings";

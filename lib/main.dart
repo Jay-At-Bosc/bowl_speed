@@ -26,20 +26,8 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
   await DatabaseHelper.instance.database; // Ensure database is initialized
-  // Get.put<MenuFeatureController>(MenuFeatureController());
-  // Get.put<ManualCalculatorController>(ManualCalculatorController());
-  // Get.put<UnitConversionController>(UnitConversionController());
-  // Get.put<SettingsController>(SettingsController());
-
-  // Get.put<BowlerController>(BowlerController());
-  // Get.put<QuickTapController>(QuickTapController());
-  // Get.put<VideoMeasureController>(VideoMeasureController());
-
+  
   runApp(const MyApp());
 }
 

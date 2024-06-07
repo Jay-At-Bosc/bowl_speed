@@ -9,6 +9,8 @@ import 'package:get/get.dart';
 import '../routes/app_pages.dart';
 
 class MenuFeatureController extends GetxController {
+
+  static MenuFeatureController instance = Get.find<MenuFeatureController>();
   String playStore =
       "https://play.google.com/store/apps/details?id=your_app_id";
   String appStore = "your_app_id";

@@ -12,6 +12,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../utils/labels.dart';
 import '../routes/app_pages.dart';
 import '../../pages/manual_calculator/custom_result_dialogue.dart';
 import '../models/bowler_report_model.dart';
@@ -46,7 +47,7 @@ class QuickTapController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    generateBowlerReports();
+    // generateBowlerReports();
   }
 
   void selectBowler(String value) {
@@ -120,7 +121,9 @@ class QuickTapController extends GetxController {
             date: formatDateTime(DateTime.now()));
         await DatabaseHelper.instance.insertQuickTapCalculator(model);
         Get.back();
-        Get.snackbar("Saved", "Recored Saved...");
+        ScaffoldMessenger.of(Get.context!).showSnackBar(
+          const SnackBar(content: Text("Saved")),
+        );
       },
     );
     // Get.defaultDialog(
@@ -241,7 +244,7 @@ class QuickTapController extends GetxController {
           Iconsax.save_add,
           size: 20,
         ),
-        label: const Text("Save"),
+        label:   Text(Labels.save),
       ),
     );
   }
@@ -303,7 +306,7 @@ class QuickTapController extends GetxController {
     filterList.assignAll(bowlerReports);
 
     update();
-    Get.to(() => const BowlerReportScreen());
+    Get.toNamed(Routes.bowlerReport);
   }
 
   void filterReports(String value) {

@@ -29,7 +29,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: true,
-      backgroundColor: isHome ? AppColors.yellowColor : AppColors.textBlueColor,
+      backgroundColor: isHome ? AppColors.blueColor : AppColors.orangeColor,
       foregroundColor: AppColors.textWhiteColor,
       title: Text(
         title,
@@ -51,8 +51,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             onPressed: onHistory,
             icon: Icon(
               Iconsax.timer_start,
-              color:
-                  isHome ? AppColors.textBlueColor : AppColors.textWhiteColor,
+              color: isHome ? AppColors.orangeColor : AppColors.textWhiteColor,
             ),
           ),
         CustomMenuFeatures(

@@ -25,9 +25,6 @@ class BowlerReportScreen extends GetView<QuickTapController> {
       resizeToAvoidBottomInset: false,
       appBar: CustomAppBar(
         title: Labels.bowlerReport,
-        onBack: () {},
-        onHistory: () {},
-        isHistoryBtnVisible: false,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),

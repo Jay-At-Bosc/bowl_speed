@@ -7,14 +7,18 @@ import 'package:get/get.dart';
 import '../utils/colors.dart';
 
 class CustomMenuFeatures extends GetView<MenuFeatureController> {
-  const CustomMenuFeatures( {super.key,this.message,required this.isHome,});
+  const CustomMenuFeatures({
+    super.key,
+    this.message,
+    required this.isHome,
+  });
   final String? message;
   final bool isHome;
 
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<String>(
-      iconColor: isHome ? AppColors.textBlueColor : AppColors.textWhiteColor,
+      iconColor: isHome ? AppColors.orangeColor : AppColors.textWhiteColor,
       onSelected: (String result) {
         switch (result) {
           case 'Rate Us':

@@ -26,12 +26,11 @@ class ManualCalcHistory extends GetView<ManualCalculatorController> {
               itemBuilder: (context, index) {
                 var obj = controller.historyList[index];
                 return Padding(
-                  padding: const EdgeInsets.only(
-                      bottom: 16.0, left: 20, right: 20, top: 20),
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: AppColors.containerColor,
+                      color: AppColors.blueColor.withOpacity(0.15),
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                     child: Padding(

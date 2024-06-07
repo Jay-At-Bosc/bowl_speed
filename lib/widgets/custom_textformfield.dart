@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../utils/colors.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField(
@@ -26,12 +29,41 @@ class CustomTextFormField extends StatelessWidget {
         ),
         TextFormField(
           controller: controller,
+          autofocus: false,
           keyboardType: TextInputType.number,
+          cursorColor: AppColors.blueColor,
+          cursorErrorColor: Colors.red,
+          style: GoogleFonts.rubik(
+              fontSize: 14,
+              height: 1.3,
+              fontWeight: FontWeight.w500,
+              color: AppColors.blueColor.withOpacity(0.9)),
           decoration: InputDecoration(
             hintMaxLines: 1,
             errorMaxLines: 2,
             hintText: hintText,
-            border: OutlineInputBorder(),
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 18.0, horizontal: 14),
+            hintStyle: GoogleFonts.rubik(
+                fontSize: 14,
+                height: 1.3,
+                fontWeight: FontWeight.w500,
+                color: AppColors.blueColor.withOpacity(0.6)),
+            filled: true,
+            fillColor: AppColors.orangeColor.withOpacity(0.1),
+            border: OutlineInputBorder(
+              borderSide:
+                  const BorderSide(color: AppColors.greenColor, width: 0.5),
+              borderRadius: BorderRadius.circular(14),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: AppColors.primaryColor1),
+              borderRadius: BorderRadius.circular(14),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.red),
+              borderRadius: BorderRadius.circular(14),
+            ),
           ),
           validator: validator,
         ),

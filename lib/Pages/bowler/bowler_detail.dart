@@ -44,7 +44,7 @@ class BowlerDetailScreen extends StatelessWidget {
                               duration: const Duration(milliseconds: 300),
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                color: AppColors.containerColor,
+                                color: AppColors.blueColor.withOpacity(0.15),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
                               child: Stack(
