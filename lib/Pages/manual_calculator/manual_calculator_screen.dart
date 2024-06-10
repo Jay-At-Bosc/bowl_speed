@@ -15,15 +15,15 @@ class ManualCalculatorScreen extends GetView<ManualCalculatorController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
+    return GestureDetector(
+      onTap: FocusScope.of(context).unfocus,
+      child: Scaffold(
+        appBar: CustomAppBar(
           title: Labels.manualCalculator,
           isHistoryBtnVisible: true,
           onHistory: controller.getHistory,
-         ),
-      body: GestureDetector(
-        onTap: FocusScope.of(context).unfocus,
-        child: Padding(
+        ),
+        body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
             key: controller.formKey,
@@ -37,6 +37,7 @@ class ManualCalculatorScreen extends GetView<ManualCalculatorController> {
                     controller: controller.distanceController,
                     hintText: Labels.hintOfPitchSize,
                     validator: Validators.validatePitchSize,
+                    focusNode: controller.distanceFocusNode,
                   ),
                   const SizedBox(
                     height: 12,
@@ -46,6 +47,7 @@ class ManualCalculatorScreen extends GetView<ManualCalculatorController> {
                     controller: controller.timeController,
                     hintText: Labels.hintOfTimeOfTravel,
                     validator: Validators.validateTime,
+                    focusNode: controller.timeFocusNode,
                   ),
                   const SizedBox(
                     height: 12,

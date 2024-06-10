@@ -6,17 +6,20 @@ import 'package:google_fonts/google_fonts.dart';
 import '../utils/colors.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField(
-      {super.key,
-      required this.filedTitle,
-      required this.controller,
-      required this.hintText,
-      required this.validator});
+  const CustomTextFormField({
+    super.key,
+    required this.filedTitle,
+    required this.controller,
+    required this.hintText,
+    required this.validator,
+    required this.focusNode,
+  });
 
   final String filedTitle;
   final TextEditingController controller;
   final String hintText;
   final String? Function(String?) validator;
+  final FocusNode focusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +36,7 @@ class CustomTextFormField extends StatelessWidget {
           keyboardType: TextInputType.number,
           cursorColor: AppColors.blueColor,
           cursorErrorColor: Colors.red,
+          focusNode: focusNode,
           style: GoogleFonts.rubik(
               fontSize: 14,
               height: 1.3,
