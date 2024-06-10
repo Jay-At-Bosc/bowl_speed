@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_import
 
 
 import 'package:bowl_speed/services/controllers/menu_feature_controller.dart';
@@ -99,5 +99,8 @@ void customResultDialogue(
         ),
       ],
     ),
+    transitionDuration: Duration(milliseconds: 500),
+    transitionCurve: Curves.easeInOut,
+    //     transition: CustomBounceTransition(),
   );
 }

@@ -24,7 +24,7 @@ class CustomDropDown extends StatelessWidget {
       decoration: InputDecoration(
         // labelText: 'Select an option',
         filled: true,
-        fillColor: AppColors.containerColor,
+        fillColor: AppColors.orangeColor.withOpacity(0.1),
         border: OutlineInputBorder(
           borderSide: const BorderSide(color: AppColors.primaryColor1),
           borderRadius: BorderRadius.circular(14),

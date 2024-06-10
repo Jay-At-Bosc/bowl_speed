@@ -10,8 +10,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../../pages/manual_calculator/custom_result_dialogue.dart';
 import '../../pages/video_measure/player.dart';
 import '../../utils/db_helper.dart';
@@ -113,7 +111,8 @@ class VideoMeasureController extends GetxController {
       ..initialize().then((value) {
         isLoading = false;
         update();
-      });
+      })
+      ..play();
 
     customVideoPlayerController = CustomVideoPlayerController(
       context: Get.context!,
@@ -121,21 +120,126 @@ class VideoMeasureController extends GetxController {
       customVideoPlayerSettings: CustomVideoPlayerSettings(
         autoFadeOutControls: true,
         showDurationPlayed: true,
+        showDurationRemaining: true,
         allowVolumeOnSlide: false,
         enterFullscreenOnStart: true,
         exitFullscreenOnEnd: false,
         // exitFullscreenButton: const SizedBox(),
         showMuteButton: false,
-        showDurationRemaining: false,
-        alwaysShowThumbnailOnVideoPaused: false,
-        pauseButton: Row(
+        customAspectRatio: 1.7666666666666666,
+        // alwaysShowThumbnailOnVideoPaused: false,
+        showPlayButton: true,
+        showSeekButtons: false,
+        settingsButtonAvailable: false,
+        // customVideoPlayerProgressBarSettings:
+        customVideoPlayerProgressBarSettings:
+            const CustomVideoPlayerProgressBarSettings(),
+        exitFullscreenButton: Row(
           children: [
+            IconButton(
+                onPressed: () {
+                  final Duration currentPosition =
+                      cachedVideoPlayerController.value.position;
+                  final Duration frameDuration =
+                      Duration(milliseconds: (4000 / 60).round());
+                  final Duration newPosition = currentPosition + frameDuration;
+                  cachedVideoPlayerController.seekTo(newPosition);
+                  log(newPosition.toString());
+                },
+                icon: const ControllIcons(icon: Icons.skip_next)),
             IconButton(
               onPressed: () {
                 final Duration currentPosition =
                     cachedVideoPlayerController.value.position;
                 final Duration frameDuration =
-                    Duration(milliseconds: (1000 / 60).round());
+                    Duration(milliseconds: (2000 / 60).round());
+                final Duration newPosition = currentPosition + frameDuration;
+                cachedVideoPlayerController.seekTo(newPosition);
+                log(newPosition.toString());
+              },
+              icon: const ControllIcons(
+                icon: Icons.skip_next_outlined,
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                customVideoPlayerController.videoPlayerController.pause();
+
+                if (point1 <= 0) {
+                  ScaffoldMessenger.of(Get.context!).showSnackBar(
+                    snackBarAnimationStyle: AnimationStyle(
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.bounceIn),
+                    const SnackBar(
+                      content: Text("Error...! Set Release Point First"),
+                    ),
+                  );
+                  // Get.snackbar("Error", "Set Release Point First");
+                  return;
+                }
+                point2 = customVideoPlayerController
+                    .videoPlayerController.value.position.inMilliseconds;
+                log("Reached At: $point2");
+                showAlert();
+                point1 = 0;
+                point2 = 0;
+                update();
+                // initializeVideoPlayer();
+              },
+              style: ElevatedButton.styleFrom(
+                foregroundColor: AppColors.textWhiteColor.withOpacity(0.8),
+                backgroundColor: AppColors.orangeColor.withOpacity(1),
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+              child: const Text(
+                Labels.reach,
+                style: TextStyle(fontSize: 13),
+              ),
+            ),
+          ],
+        ),
+        pauseButton: Row(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                // update();
+                ScaffoldMessenger.of(Get.context!).showSnackBar(
+                  snackBarAnimationStyle: AnimationStyle(
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.bounceIn),
+                  const SnackBar(
+                    content: Text("Release Point Noted... 🏏"),
+                  ),
+                );
+
+                customVideoPlayerController.videoPlayerController.pause();
+                point1 = customVideoPlayerController
+                    .videoPlayerController.value.position.inMilliseconds;
+                // initializeVideoPlayer();
+                update();
+              },
+              style: ElevatedButton.styleFrom(
+                foregroundColor: AppColors.textWhiteColor.withOpacity(0.8),
+                backgroundColor: AppColors.orangeColor.withOpacity(1),
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+              child: const Text(
+                Labels.release,
+                style: TextStyle(fontSize: 13),
+              ),
+            ),
+            IconButton(
+              onPressed: () {
+                final Duration currentPosition =
+                    cachedVideoPlayerController.value.position;
+                final Duration frameDuration =
+                    Duration(milliseconds: (2000 / 60).round());
                 final Duration newPosition = currentPosition - frameDuration;
                 cachedVideoPlayerController.seekTo(newPosition);
                 log(newPosition.toString());
@@ -158,60 +262,123 @@ class VideoMeasureController extends GetxController {
                   cachedVideoPlayerController.pause();
                 },
                 icon: const ControllIcons(icon: Icons.pause_outlined)),
-            IconButton(
-                onPressed: () {
-                  final Duration currentPosition =
-                      cachedVideoPlayerController.value.position;
-                  final Duration frameDuration =
-                      Duration(milliseconds: (4000 / 60).round());
-                  final Duration newPosition = currentPosition + frameDuration;
-                  cachedVideoPlayerController.seekTo(newPosition);
-                  log(newPosition.toString());
-                },
-                icon: const ControllIcons(icon: Icons.skip_next)),
-            IconButton(
-              onPressed: () {
-                final Duration currentPosition =
-                    cachedVideoPlayerController.value.position;
-                final Duration frameDuration =
-                    Duration(milliseconds: (1000 / 60).round());
-                final Duration newPosition = currentPosition + frameDuration;
-                cachedVideoPlayerController.seekTo(newPosition);
-                log(newPosition.toString());
-              },
-              icon: const ControllIcons(
-                icon: Icons.skip_next_outlined,
-              ),
-            ),
           ],
         ),
         systemUIModeInsideFullscreen: SystemUiMode.leanBack,
-        settingsButton: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.max,
+        // settingsButton: Container(
+        //   padding: EdgeInsets.all(6),
+        //   child: IconButton(
+        //     onPressed: () {
+
+        //       Get.off(() => HomeScreen());
+        //     },
+        //     icon: const Icon(Icons.arrow_back, color: AppColors.textWhiteColor),
+        //   ),
+        // ),
+        // settingsButton: Padding(
+        //   padding: const EdgeInsets.only(top: 20),
+        //   child: Container(
+        //     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        //     decoration: BoxDecoration(
+        //       borderRadius: BorderRadius.circular(10),
+        //       // color: AppColors.textDarkColor.withOpacity(0.6),
+        //     ),
+        //     child: Row(
+        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //       mainAxisSize: MainAxisSize.max,
+        //       children: [
+        //         ElevatedButton(
+        //           onPressed: () {
+        //             update();
+        //             Get.snackbar(
+        //               "",
+        //               "",
+        //               snackPosition: SnackPosition.TOP,
+        //               duration: const Duration(seconds: 1),
+        //               messageText: Text(
+        //                 "Release Point Noted",
+        //                 textAlign: TextAlign.center,
+        //                 style:
+        //                     GoogleFonts.rubik(color: AppColors.textWhiteColor),
+        //               ),
+        //               barBlur: 0,
+        //               backgroundColor: Colors.transparent,
+        //             );
+
+        //             customVideoPlayerController.videoPlayerController.pause();
+        //             point1 = customVideoPlayerController
+        //                 .videoPlayerController.value.position.inMilliseconds;
+        //             initializeVideoPlayer();
+        //             update();
+        //           },
+        //           style: ElevatedButton.styleFrom(
+        //             foregroundColor: AppColors.textWhiteColor.withOpacity(0.8),
+        //             backgroundColor: AppColors.orangeColor.withOpacity(1),
+        //             padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        //             shape: RoundedRectangleBorder(
+        //               borderRadius: BorderRadius.circular(10.0),
+        //             ),
+        //           ),
+        //           child: const Text(
+        //             Labels.release,
+        //             style: TextStyle(fontSize: 12),
+        //           ),
+        //         ),
+        //         if (point1 > 0)
+        //           ElevatedButton(
+        //             onPressed: () {
+        //               customVideoPlayerController.videoPlayerController.pause();
+
+        //               point2 = customVideoPlayerController
+        //                   .videoPlayerController.value.position.inMilliseconds;
+        //               log("Reached At: $point2");
+        //               showAlert();
+        //               // point1 = 0;
+        //               // point2 = 0;
+        //               // update();
+        //               // initializeVideoPlayer();
+        //             },
+        //             style: ElevatedButton.styleFrom(
+        //               foregroundColor:
+        //                   AppColors.textWhiteColor.withOpacity(0.8),
+        //               backgroundColor: AppColors.orangeColor.withOpacity(1),
+        //               padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        //               shape: RoundedRectangleBorder(
+        //                 borderRadius: BorderRadius.circular(10.0),
+        //               ),
+        //             ),
+        //             child: const Text(
+        //               Labels.reach,
+        //               style: TextStyle(fontSize: 12),
+        //             ),
+        //           ),
+        //       ],
+        //     ),
+        //   ),
+        // ),
+        playButton: Row(
           children: [
             ElevatedButton(
               onPressed: () {
-                Get.snackbar(
-                  "",
-                  "",
-                  snackPosition: SnackPosition.TOP,
-                  duration: const Duration(seconds: 1),
-                  messageText: Text(
-                    "Release Point Noted",
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.rubik(color: AppColors.textWhiteColor),
+                update();
+                ScaffoldMessenger.of(Get.context!).showSnackBar(
+                  snackBarAnimationStyle: AnimationStyle(
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.bounceIn),
+                  const SnackBar(
+                    content: Text("Release Point Noted... 🏏"),
                   ),
-                  barBlur: 0,
-                  backgroundColor: Colors.transparent,
                 );
+
                 customVideoPlayerController.videoPlayerController.pause();
                 point1 = customVideoPlayerController
                     .videoPlayerController.value.position.inMilliseconds;
+                // initializeVideoPlayer();
+                // update();
               },
               style: ElevatedButton.styleFrom(
                 foregroundColor: AppColors.textWhiteColor.withOpacity(0.8),
-                backgroundColor: AppColors.orangeColor.withOpacity(0.6),
+                backgroundColor: AppColors.orangeColor.withOpacity(1),
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
@@ -222,38 +389,13 @@ class VideoMeasureController extends GetxController {
                 style: TextStyle(fontSize: 12),
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                customVideoPlayerController.videoPlayerController.pause();
 
-                point2 = customVideoPlayerController
-                    .videoPlayerController.value.position.inMilliseconds;
-                log("Reached At: $point2");
-                showAlert();
-              },
-              style: ElevatedButton.styleFrom(
-                foregroundColor: AppColors.textWhiteColor.withOpacity(0.8),
-                backgroundColor: AppColors.orangeColor.withOpacity(0.6),
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
-              child: const Text(
-                Labels.reach,
-                style: TextStyle(fontSize: 12),
-              ),
-            ),
-          ],
-        ),
-        playButton: Row(
-          children: [
             IconButton(
                 onPressed: () {
                   final Duration currentPosition =
                       cachedVideoPlayerController.value.position;
                   final Duration frameDuration =
-                      Duration(milliseconds: (1000 / 60).round());
+                      Duration(milliseconds: (2000 / 60).round());
                   final Duration newPosition = currentPosition - frameDuration;
                   cachedVideoPlayerController.seekTo(newPosition);
                   log(newPosition.toString());
@@ -275,28 +417,28 @@ class VideoMeasureController extends GetxController {
                   cachedVideoPlayerController.play();
                 },
                 icon: const ControllIcons(icon: Icons.play_arrow)),
-            IconButton(
-                onPressed: () {
-                  final Duration currentPosition =
-                      cachedVideoPlayerController.value.position;
-                  final Duration frameDuration =
-                      Duration(milliseconds: (4000 / 60).round());
-                  final Duration newPosition = currentPosition + frameDuration;
-                  cachedVideoPlayerController.seekTo(newPosition);
-                  log(newPosition.toString());
-                },
-                icon: const ControllIcons(icon: Icons.skip_next)),
-            IconButton(
-                onPressed: () {
-                  final Duration currentPosition =
-                      cachedVideoPlayerController.value.position;
-                  final Duration frameDuration =
-                      Duration(milliseconds: (1000 / 60).round());
-                  final Duration newPosition = currentPosition + frameDuration;
-                  cachedVideoPlayerController.seekTo(newPosition);
-                  log(newPosition.toString());
-                },
-                icon: const ControllIcons(icon: Icons.skip_next_outlined)),
+            // IconButton(
+            //     onPressed: () {
+            //       final Duration currentPosition =
+            //           cachedVideoPlayerController.value.position;
+            //       final Duration frameDuration =
+            //           Duration(milliseconds: (4000 / 60).round());
+            //       final Duration newPosition = currentPosition + frameDuration;
+            //       cachedVideoPlayerController.seekTo(newPosition);
+            //       log(newPosition.toString());
+            //     },
+            //     icon: const ControllIcons(icon: Icons.skip_next)),
+            // IconButton(
+            //     onPressed: () {
+            //       final Duration currentPosition =
+            //           cachedVideoPlayerController.value.position;
+            //       final Duration frameDuration =
+            //           Duration(milliseconds: (1000 / 60).round());
+            //       final Duration newPosition = currentPosition + frameDuration;
+            //       cachedVideoPlayerController.seekTo(newPosition);
+            //       log(newPosition.toString());
+            //     },
+            //     icon: const ControllIcons(icon: Icons.skip_next_outlined)),
           ],
         ),
       ),
@@ -318,7 +460,7 @@ class ControllIcons extends StatelessWidget {
       padding: const EdgeInsets.all(6),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: AppColors.orangeColor.withOpacity(0.6),
+        color: AppColors.orangeColor.withOpacity(1),
       ),
       child: Center(
         child: Icon(

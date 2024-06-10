@@ -3,21 +3,23 @@
 import 'package:bowl_speed/services/controllers/unit_conversion_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
+import '../../utils/colors.dart';
 import '../../utils/enums.dart';
 
-class CustomInputDropdown<T extends Unit> extends GetView<UnitConversionController> {
-  const CustomInputDropdown( 
-      {
-      super.key,
-      required this.formKey,
-      required this.formController,
-      required this.formOnChanged,
-      required this.dropdownValue,
-      required this.dropdownItems,
-      required this.dropdownonChanged,
-      required this.validator,
-      });
+class CustomInputDropdown<T extends Unit>
+    extends GetView<UnitConversionController> {
+  const CustomInputDropdown({
+    super.key,
+    required this.formKey,
+    required this.formController,
+    required this.formOnChanged,
+    required this.dropdownValue,
+    required this.dropdownItems,
+    required this.dropdownonChanged,
+    required this.validator,
+  });
 
   final T dropdownValue;
   final List<T> dropdownItems;
@@ -29,36 +31,70 @@ class CustomInputDropdown<T extends Unit> extends GetView<UnitConversionControll
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Flexible(
-          flex: 5,
-          child: DropdownButton<T>(
-            value: dropdownValue,
-            items: dropdownItems.map((T unit) {
-              return DropdownMenuItem<T>(
-                value: unit,
-                child: Text(unit.getLabel),
-              );
-            }).toList(),
-            onChanged: dropdownonChanged,
-          ),
-        ),
-        SizedBox(width: 6),
-        Flexible(
-            flex: 4,
-            child: Form(
-              key: formKey,
-              child: TextFormField(
-                controller: formController,
-                keyboardType: TextInputType.number,
-                onChanged: formOnChanged,
-                validator: validator,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Flexible(
+            flex: 5,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+              decoration: BoxDecoration(
+                // color: AppColors.blueColor,
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: AppColors.blueColor, width: 1),
               ),
-            )),
-      ],
+              child: DropdownButton<T>(
+                style: GoogleFonts.rubik(
+                  color: AppColors.textDarkColor,
+                  fontWeight: FontWeight.w400,
+                ),
+                underline: SizedBox(),
+                borderRadius: BorderRadius.circular(10),
+                value: dropdownValue,
+                items: dropdownItems.map((T unit) {
+                  return DropdownMenuItem<T>(
+                    value: unit,
+                    child: Text(unit.getLabel),
+                  );
+                }).toList(),
+                onChanged: dropdownonChanged,
+              ),
+            ),
+          ),
+          SizedBox(width: 6),
+          Flexible(
+              flex: 4,
+              child: Form(
+                key: formKey,
+                child: TextFormField(
+                  style: GoogleFonts.rubik(
+                    color: AppColors.textDarkColor.withOpacity(0.9),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 14,
+                  ),
+                  decoration: InputDecoration(
+                    // borderRadius: BorderRadius.circular(10),
+
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: AppColors.blueColor),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: AppColors.blueColor),
+                    ),
+                  ),
+                  controller: formController,
+                  keyboardType: TextInputType.number,
+                  onChanged: formOnChanged,
+                  validator: validator,
+                ),
+              )),
+        ],
+      ),
     );
   }
 }

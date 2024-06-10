@@ -46,6 +46,7 @@ class CardItem extends StatelessWidget {
         } else {
           iconPosition.value = 0.0;
         }
+        // if (details.localPosition.dx > 100) onTap();
         onTap();
       },
       child: Stack(

@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:bowl_speed/pages/bowler/bowler_report.dart';
 
 import 'package:bowl_speed/services/models/quick_tap_model.dart';
 import 'package:bowl_speed/utils/colors.dart';
@@ -44,11 +43,11 @@ class QuickTapController extends GetxController {
 
   final CountDownController countDownController = CountDownController();
 
-  @override
-  void onInit() async {
-    super.onInit();
-    // generateBowlerReports();
-  }
+  // @override
+  // void onInit() async {
+  //   super.onInit();
+  //   // generateBowlerReports();
+  // }
 
   void selectBowler(String value) {
     selectedBowler = value;
