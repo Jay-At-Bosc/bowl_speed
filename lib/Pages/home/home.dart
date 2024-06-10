@@ -1,4 +1,3 @@
-
 // ignore_for_file: unused_import
 
 import 'package:bowl_speed/services/controllers/manual_calc_controller.dart';
@@ -19,7 +18,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return GetBuilder<VideoMeasureController>(
       builder: (controller) => Scaffold(
         backgroundColor: AppColors.textWhiteColor,

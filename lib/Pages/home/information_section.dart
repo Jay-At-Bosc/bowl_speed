@@ -27,7 +27,7 @@ class InformationSection extends StatelessWidget {
           children: [
             CustomRoundedIcon(
               icon: Iconsax.receipt_2,
-              iconColor: AppColors.textWhiteColor.withOpacity(0.8),
+              iconColor: AppColors.textWhiteColor,
               label: Labels.bowlerReport,
               onTap: () {
                 QuickTapController.instance.generateBowlerReports();
@@ -35,7 +35,7 @@ class InformationSection extends StatelessWidget {
             ),
             CustomRoundedIcon(
               icon: Iconsax.setting_2,
-              iconColor: AppColors.textWhiteColor.withOpacity(0.8),
+              iconColor: AppColors.textWhiteColor,
               label: Labels.settings,
               onTap: () {
                 Get.to(() => const SettingsScreen());
@@ -43,7 +43,7 @@ class InformationSection extends StatelessWidget {
             ),
             CustomRoundedIcon(
               icon: Iconsax.info_circle,
-              iconColor: AppColors.textWhiteColor.withOpacity(0.8),
+              iconColor: AppColors.textWhiteColor,
               label: Labels.howToUse,
               onTap: () {
                 Get.to(() => const HowToUseScreen());

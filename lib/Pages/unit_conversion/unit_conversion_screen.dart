@@ -1,5 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:bowl_speed/utils/colors.dart';
+import 'package:bowl_speed/widgets/custom_app_bar.dart';
+import 'package:bowl_speed/widgets/custom_lable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,7 +13,6 @@ import '../../utils/enums.dart';
 import '../../utils/formate_functions.dart';
 import '../../utils/labels.dart';
 import '../../utils/validators.dart';
-import '../../widgets/custom_menu_features.dart';
 import 'custom_input_dropdown.dart';
 import 'custom_output_dropdown.dart';
 
@@ -20,16 +22,11 @@ class UnitConversionScreen extends GetView<UnitConversionController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          Labels.unitConversion,
-          style: GoogleFonts.rubik(color: Colors.white),
-        ),
-        centerTitle: true,
-        backgroundColor: Color.fromARGB(226, 1, 74, 177),
-        actions: [
-          CustomMenuFeatures("Unit Conversion"),
-        ],
+      appBar: CustomAppBar(
+        title: Labels.unitConversion,
+        onBack: () {},
+        onHistory: () {},
+        isHistoryBtnVisible: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -39,11 +36,17 @@ class UnitConversionScreen extends GetView<UnitConversionController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               /// Speed conversion
-              Text(
-                Labels.convertDistance,
-                style: GoogleFonts.rubik(color: Colors.black, fontSize: 20),
+              CustomLabelText(
+                label: Labels.convertDistance,
+                style: GoogleFonts.rubik(
+                  color: AppColors.blueColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
-
+              SizedBox(
+                height: 8,
+              ),
               // Input Dropdown
               CustomInputDropdown<DistanceUnits>(
                 dropdownValue: controller.inputDistanceUnit,
@@ -54,7 +57,9 @@ class UnitConversionScreen extends GetView<UnitConversionController> {
                 validator: Validators.validatePitchSize,
                 formKey: controller.distanceFormKey,
               ),
-
+              const SizedBox(
+                height: 12,
+              ),
               // Output Dropdown
               CustomOutputDropdown<DistanceUnits>(
                 dropdownValue: controller.outputDistanceUnit,
@@ -67,11 +72,17 @@ class UnitConversionScreen extends GetView<UnitConversionController> {
               ),
 
               /// Speed conversion
-              Text(
-                Labels.convertSpeed,
-                style: GoogleFonts.rubik(color: Colors.black, fontSize: 20),
+              CustomLabelText(
+                label: Labels.convertSpeed,
+                style: GoogleFonts.rubik(
+                  color: AppColors.blueColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
-
+              SizedBox(
+                height: 8,
+              ),
               // Input Dropdown
               CustomInputDropdown<SpeedUnits>(
                 dropdownValue: controller.inputSpeedUnit,
@@ -83,6 +94,9 @@ class UnitConversionScreen extends GetView<UnitConversionController> {
                 validator: Validators.validateSpeed,
               ),
 
+              const SizedBox(
+                height: 12,
+              ),
               // Output Dropdown
               CustomOutputDropdown<SpeedUnits>(
                 dropdownValue: controller.outputSpeedUnit,

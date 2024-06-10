@@ -1,7 +1,9 @@
 import 'package:bowl_speed/widgets/menu_item.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
+import '../pages/demo.dart';
 import '../utils/colors.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -43,17 +45,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             icon: Icon(
               Iconsax.timer_start,
               color:
-                  isHome ? AppColors.textBlueColor : AppColors.textWhiteColor,
+                  isHome ? AppColors.textWhiteColor : AppColors.textWhiteColor,
             ),
           ),
         PopupMenuButton(
           iconColor:
-              isHome ? AppColors.textBlueColor : AppColors.textWhiteColor,
+              isHome ? AppColors.textWhiteColor : AppColors.textWhiteColor,
           itemBuilder: (context) => [
             buildMenuItem('Rate us', () {}),
             buildMenuItem('Share app', () {}),
             buildMenuItem('Contact us', () {}),
-            buildMenuItem('Privacy Policy', () {}),
+            buildMenuItem('Privacy Policy', () {
+              Get.to(() => const Demo());
+            }),
           ],
         ),
       ],

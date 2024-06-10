@@ -42,11 +42,11 @@ class QuickTapController extends GetxController {
 
   final CountDownController countDownController = CountDownController();
 
-  @override
-  void onInit() async {
-    super.onInit();
-    generateBowlerReports();
-  }
+  // @override
+  // void onInit() async {
+  //   super.onInit();
+  //   // generateBowlerReports();
+  // }
 
   void selectBowler(String value) {
     selectedBowler = value;
