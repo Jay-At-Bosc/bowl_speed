@@ -1,3 +1,5 @@
+import 'package:share_plus/share_plus.dart';
+
 class Labels {
   //Quick Tap
   static String get quickTap => "Quick Tap";
@@ -84,6 +86,7 @@ class Labels {
   static String get addBowler => "Add Bowler";
   static String get bowlerDetails => "Bowler Detail";
   static String get result => "Result";
+  static String get share => "Share";
 
   /// Settings
   static String get settings => "Settings";

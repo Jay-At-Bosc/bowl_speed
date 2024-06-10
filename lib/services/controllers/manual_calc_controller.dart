@@ -5,11 +5,10 @@ import 'dart:developer';
 import 'package:bowl_speed/utils/db_helper.dart';
 import 'package:bowl_speed/utils/formate_functions.dart';
 import 'package:bowl_speed/utils/labels.dart';
+import 'package:bowl_speed/widgets/custom_animated_dialogue.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../pages/manual_calculator/custom_result_dialogue.dart';
-import '../../pages/manual_calculator/manual_calc_history.dart';
 import '../models/manual_calc_model.dart';
 import '../routes/app_pages.dart';
 
@@ -20,6 +19,8 @@ class ManualCalculatorController extends GetxController {
   final formKey = GlobalKey<FormState>();
   final TextEditingController distanceController = TextEditingController();
   final TextEditingController timeController = TextEditingController();
+  FocusNode distanceFocusNode = FocusNode();
+  FocusNode timeFocusNode = FocusNode();
 
   double get distance => double.parse(distanceController.text);
   double get time => double.parse(timeController.text);
@@ -35,14 +36,19 @@ class ManualCalculatorController extends GetxController {
     super.onInit();
   }
 
-  void calculateSpeed() {
+  void calculateSpeed() async {
+   if(distanceFocusNode.hasFocus || timeFocusNode.hasFocus){
+     distanceFocusNode.unfocus();
+     timeFocusNode.unfocus();
+   }
     if (formKey.currentState!.validate()) {
       speedMps = distance / time;
       speedKmph = speedMps * 3.6;
       speedMph = speedMps * 2.237;
       result =
           '${speedKmph.toStringAsFixed(3)} km/h - ${speedMph.toStringAsFixed(3)} mph';
-      customResultDialogue('Result', result, () => ManualCalculatorController.instance.onSave(),);
+
+      customAnimatedDialogue(Get.context!, Labels.result, result, onSave);
     }
   }
 

@@ -6,18 +6,18 @@ import 'package:get/get.dart';
 
 import '../../utils/enums.dart';
 
-class CustomInputDropdown<T extends Unit> extends GetView<UnitConversionController> {
-  const CustomInputDropdown( 
-      {
-      super.key,
-      required this.formKey,
-      required this.formController,
-      required this.formOnChanged,
-      required this.dropdownValue,
-      required this.dropdownItems,
-      required this.dropdownonChanged,
-      required this.validator,
-      });
+class CustomInputDropdown<T extends Unit>
+    extends GetView<UnitConversionController> {
+  const CustomInputDropdown({
+    super.key,
+    required this.formKey,
+    required this.formController,
+    required this.formOnChanged,
+    required this.dropdownValue,
+    required this.dropdownItems,
+    required this.dropdownonChanged,
+    required this.validator,
+  });
 
   final T dropdownValue;
   final List<T> dropdownItems;
