@@ -2,16 +2,16 @@ import 'package:bowl_speed/imports_manager.dart';
 
 class CustomInputDropdown<T extends Unit>
     extends GetView<UnitConversionController> {
-  const CustomInputDropdown({
-    super.key,
-    required this.formKey,
-    required this.formController,
-    required this.formOnChanged,
-    required this.dropdownValue,
-    required this.dropdownItems,
-    required this.dropdownonChanged,
-    required this.validator,
-  });
+  const CustomInputDropdown(
+      {super.key,
+      required this.formKey,
+      required this.formController,
+      required this.formOnChanged,
+      required this.dropdownValue,
+      required this.dropdownItems,
+      required this.dropdownonChanged,
+      required this.validator,
+      required this.focusNode});
 
   final T dropdownValue;
   final List<T> dropdownItems;
@@ -20,6 +20,7 @@ class CustomInputDropdown<T extends Unit>
   final void Function(String)? formOnChanged;
   final void Function(T?)? dropdownonChanged;
   final String? Function(String?)? validator;
+  final FocusNode focusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +63,7 @@ class CustomInputDropdown<T extends Unit>
               child: Form(
                 key: formKey,
                 child: TextFormField(
+                  focusNode: focusNode,
                   style: GoogleFonts.rubik(
                     color: AppColors.textDarkColor.withOpacity(0.9),
                     fontWeight: FontWeight.w400,
@@ -69,7 +71,10 @@ class CustomInputDropdown<T extends Unit>
                   ),
                   decoration: InputDecoration(
                     // borderRadius: BorderRadius.circular(10),
-
+                    errorMaxLines: 2,
+                    errorStyle: GoogleFonts.rubik(
+                      fontSize: 0,
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: const BorderSide(color: AppColors.blueColor),
@@ -81,7 +86,7 @@ class CustomInputDropdown<T extends Unit>
                   ),
                   controller: formController,
                   keyboardType: TextInputType.number,
-                  onChanged: formOnChanged,
+                  onFieldSubmitted: formOnChanged,
                   validator: validator,
                 ),
               )),

@@ -15,9 +15,9 @@ class ManualCalculatorScreen extends GetView<ManualCalculatorController> {
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Form(
-            key: controller.formKey,
-            child: SingleChildScrollView(
+          child: SingleChildScrollView(
+            child: Form(
+              key: controller.formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,6 +28,7 @@ class ManualCalculatorScreen extends GetView<ManualCalculatorController> {
                     hintText: Labels.hintOfPitchSize,
                     validator: Validators.validatePitchSize,
                     focusNode: controller.distanceFocusNode,
+                    formOnSubmit: controller.calculateSpeed,
                   ),
                   const SizedBox(
                     height: 12,
@@ -38,6 +39,7 @@ class ManualCalculatorScreen extends GetView<ManualCalculatorController> {
                     hintText: Labels.hintOfTimeOfTravel,
                     validator: Validators.validateTime,
                     focusNode: controller.timeFocusNode,
+                    formOnSubmit: controller.calculateSpeed,
                   ),
                   const SizedBox(
                     height: 12,

@@ -1,4 +1,3 @@
 {
-  "dart.flutterSdkPath": ".fvm/versions/stable",
-  "java.configuration.updateBuildConfiguration": "disabled"
+  "dart.flutterSdkPath": ".fvm/versions/stable"
 }

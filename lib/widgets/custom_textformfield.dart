@@ -7,13 +7,15 @@ class CustomTextFormField extends StatelessWidget {
     required this.controller,
     required this.hintText,
     required this.validator,
-    required this.focusNode,
+    required this.focusNode, 
+    required this.formOnSubmit,
   });
 
   final String filedTitle;
   final TextEditingController controller;
   final String hintText;
   final String? Function(String?) validator;
+   final void Function() formOnSubmit;
   final FocusNode focusNode;
 
   @override
@@ -43,6 +45,9 @@ class CustomTextFormField extends StatelessWidget {
             hintText: hintText,
             contentPadding:
                 const EdgeInsets.symmetric(vertical: 18.0, horizontal: 14),
+                errorStyle: GoogleFonts.rubik(
+                  fontSize: 0,
+                ),
             hintStyle: GoogleFonts.rubik(
                 fontSize: 14,
                 height: 1.3,
@@ -65,6 +70,9 @@ class CustomTextFormField extends StatelessWidget {
             ),
           ),
           validator: validator,
+          onFieldSubmitted: (_){
+            formOnSubmit;
+          },
         ),
       ],
     );

@@ -1,37 +1,23 @@
 import 'dart:developer';
 
-import 'package:bowl_speed/imports_manager.dart';
+import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+
+import '../../utils/constants.dart';
+import '../../utils/enums.dart';
+import '../../utils/labels.dart';
 
 class UnitConversionController extends GetxController {
   TextEditingController distanceController = TextEditingController(text: '1.0');
   TextEditingController speedController = TextEditingController(text: '1.0');
 
-  // List of units
-  List<String> distanceUnits = [
-    Labels.meter,
-    Labels.kilometer,
-    Labels.miles,
-    Labels.yard,
-    Labels.nauticalMiles
-  ];
-
-  List<String> speedUnits = [
-    Labels.meterPerSecond,
-    Labels.kilometerPerHour,
-    Labels.milesPerHour,
-    Labels.nauticalMilesPerHour,
-  ];
+  FocusNode distanceFocusNode = FocusNode();
+  FocusNode speedFocusNode = FocusNode();
 
   final distanceFormKey = GlobalKey<FormState>();
   final speedFormKey = GlobalKey<FormState>();
 
-  // Selected units and values
-  // String inputDistanceUnit = Labels.meter;
-  // String outputDistanceUnit = Labels.kilometer;
-  // String inputSpeedUnit = Labels.meterPerSecond;
-  // String outputSpeedUnit = Labels.kilometerPerHour;
-  double distanceConversionFactor = Constants.meterToKilometer;
-  double speedConversionFactor = Constants.meterPerSecondToKilometerPerHour;
   late double distanceResult;
   late double speedResult;
 
@@ -39,6 +25,8 @@ class UnitConversionController extends GetxController {
   DistanceUnits outputDistanceUnit = DistanceUnits.kilometer;
   SpeedUnits inputSpeedUnit = SpeedUnits.meterPerSecond;
   SpeedUnits outputSpeedUnit = SpeedUnits.kilometerPerHour;
+  double distanceConversionFactor = Constants.meterToKilometer;
+  double speedConversionFactor = Constants.meterPerSecondToKilometerPerHour;
 
   @override
   void onInit() {
@@ -47,35 +35,36 @@ class UnitConversionController extends GetxController {
     super.onInit();
   }
 
-  double get distance => double.tryParse(distanceController.text) ?? 1.0;
-  double get speed => double.tryParse(speedController.text) ?? 1.0;
+  double get distance => double.tryParse(distanceController.text) ?? 0.0;
+  double get speed => double.tryParse(speedController.text) ?? 0.0;
   bool get isDistanceFormValid => distanceFormKey.currentState!.validate();
   bool get isSpeedFormValid => speedFormKey.currentState!.validate();
 
   // Methods for distance conversion
   void updateInputDistanceUnit(DistanceUnits? value) {
-    isDistanceFormValid;
     inputDistanceUnit = value ?? inputDistanceUnit;
-    //log("after update input Dist. : $value");
+    log("after update input Dist. : $value");
     calculateDistanceConversion();
   }
 
   void updateOutputDistanceUnit(DistanceUnits? value) {
-    isDistanceFormValid;
     outputDistanceUnit = value ?? outputDistanceUnit;
-    //log("after update output Dist. : $value");
+    log("after update output Dist. : $value");
     calculateDistanceConversion();
   }
 
   void updateDistanceForm(String value) {
-    isDistanceFormValid;
     log("value : $value");
     calculateDistanceConversion();
   }
 
   void calculateDistanceConversion() {
-    distanceConversionFactor = convertDistance(
-        inputDistanceUnit, outputDistanceUnit); //getDistanceConversionFactor();
+    distanceFocusNode.unfocus();
+
+    isDistanceFormValid;
+
+    distanceConversionFactor =
+        convertDistance(inputDistanceUnit, outputDistanceUnit);
     log("converstion factor : $distanceConversionFactor");
 
     distanceResult = distance * distanceConversionFactor;
@@ -85,28 +74,28 @@ class UnitConversionController extends GetxController {
 
   /// Methods for speed conversion
   void updateInputSpeedUnit(SpeedUnits? value) {
-    isSpeedFormValid;
     inputSpeedUnit = value ?? inputSpeedUnit;
     log("after update input Speed. : $value");
     calculateSpeedConversion();
   }
 
   void updateOutputSpeedUnit(SpeedUnits? value) {
-    isSpeedFormValid;
     outputSpeedUnit = value ?? outputSpeedUnit;
     log("after update output Speed. : $value");
     calculateSpeedConversion();
   }
 
   void updateSpeedForm(String value) {
-    isSpeedFormValid;
     log("value : $value");
     calculateSpeedConversion();
   }
 
   void calculateSpeedConversion() {
-    speedConversionFactor = convertSpeed(
-        inputSpeedUnit, outputSpeedUnit); //getSpeedConversionFactor();
+    speedFocusNode.unfocus();
+
+    isSpeedFormValid;
+
+    speedConversionFactor = convertSpeed(inputSpeedUnit, outputSpeedUnit);
     log("converstion factor : $speedConversionFactor");
 
     speedResult = speed * speedConversionFactor;

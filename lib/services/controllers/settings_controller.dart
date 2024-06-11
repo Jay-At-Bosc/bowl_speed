@@ -6,11 +6,14 @@ class SettingsController extends GetxController {
   static SettingsController instance = Get.find<SettingsController>();
   String get gameTypeId => "gameTypeId";
 
-  TextEditingController cricketController = TextEditingController();
+ 
+  TextEditingController cricketController = TextEditingController(text: QuickTapController.instance.distance.toString());
   TextEditingController baseBallController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
   Sport selectedSport = Sport.cricket;
+
+  
 
   void setSelectedSport(Sport sport) {
     log("Selected Sport : $sport");
@@ -18,9 +21,9 @@ class SettingsController extends GetxController {
     update([gameTypeId]);
   }
 
-  void onCricket() {
+ Future<void> onCricket() async {
     log("cricket");
-    customPitchSizeChangeDialog(
+    await customPitchSizeChangeDialog(
         cricketController, setCricetDefaultPitchMeter, formKey);
   }
 

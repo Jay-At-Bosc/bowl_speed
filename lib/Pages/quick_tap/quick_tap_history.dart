@@ -1,4 +1,3 @@
-
 import 'package:bowl_speed/imports_manager.dart';
 
 class QuickTapHistoryScreen extends GetView<QuickTapController> {
