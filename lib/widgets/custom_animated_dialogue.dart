@@ -1,10 +1,5 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_string_interpolations
+import 'package:bowl_speed/imports_manager.dart';
 
-import 'package:bowl_speed/services/controllers/menu_feature_controller.dart';
-import 'package:bowl_speed/utils/colors.dart';
-import 'package:bowl_speed/utils/labels.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 void customAnimatedDialogue(
     BuildContext context, String title, String content, Function() save) {
@@ -12,7 +7,7 @@ void customAnimatedDialogue(
     context: context,
     barrierDismissible: true,
     barrierLabel: 'Label',
-    transitionDuration: Duration(milliseconds: 300),
+    transitionDuration: const Duration(milliseconds: 300),
     pageBuilder: (context, animation1, animation2) {
       return Container();
     },
@@ -37,7 +32,7 @@ void customAnimatedDialogue(
                 Text(
                   content,
                   maxLines: 2,
-                  style: TextStyle(overflow: TextOverflow.ellipsis),
+                  style: const TextStyle(overflow: TextOverflow.ellipsis),
                 ),
               ],
             ),
@@ -49,7 +44,7 @@ void customAnimatedDialogue(
               ElevatedButton.icon(
                 onPressed: () => MenuFeatureController.instance.shareApp(""),
                 label: Text(Labels.share),
-                icon: Icon(Icons.share),
+                icon: const Icon(Icons.share),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.textWhiteColor,
                   foregroundColor: AppColors.orangeColor,
@@ -63,7 +58,7 @@ void customAnimatedDialogue(
                   FocusScope.of(context).unfocus();
                 },
                 label: Text(Labels.save),
-                icon: Icon(Icons.save),
+                icon: const Icon(Icons.save),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.orangeColor,
                   foregroundColor: AppColors.textWhiteColor,

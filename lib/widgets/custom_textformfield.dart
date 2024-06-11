@@ -1,9 +1,4 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-import '../utils/colors.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -27,7 +22,7 @@ class CustomTextFormField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(filedTitle),
-        SizedBox(
+        const SizedBox(
           height: 4,
         ),
         TextFormField(

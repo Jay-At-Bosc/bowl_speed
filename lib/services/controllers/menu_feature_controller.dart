@@ -1,12 +1,6 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_brace_in_string_interps
-
 import 'dart:developer';
 import 'dart:io';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:get/get.dart';
-
-import '../routes/app_pages.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
 class MenuFeatureController extends GetxController {
   static MenuFeatureController instance = Get.find<MenuFeatureController>();
@@ -29,8 +23,8 @@ class MenuFeatureController extends GetxController {
   void shareApp(String? data) {
     log("share app");
     url = onAndroid();
-    
-    Share.share("$message ${url}. Enjoy!");
+
+    Share.share("$message $url. Enjoy!");
   }
 
   void openPrivacyPolicy() {

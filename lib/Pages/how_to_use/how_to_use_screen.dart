@@ -1,8 +1,5 @@
-import 'package:bowl_speed/utils/colors.dart';
-import 'package:bowl_speed/utils/labels.dart';
-import 'package:bowl_speed/widgets/custom_app_bar.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:bowl_speed/imports_manager.dart';
+
 
 class HowToUseScreen extends StatelessWidget {
   const HowToUseScreen({super.key});

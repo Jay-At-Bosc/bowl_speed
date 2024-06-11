@@ -1,8 +1,6 @@
-// ignore_for_file: prefer_const_constructors
 
-import 'package:bowl_speed/utils/colors.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:bowl_speed/imports_manager.dart';
+
 
 class CustomTile extends StatelessWidget {
   const CustomTile({super.key, required this.label, this.onTap});
@@ -18,7 +16,7 @@ class CustomTile extends StatelessWidget {
         style: GoogleFonts.rubik(),
       ),
       tileColor: AppColors.blueColor.withOpacity(0.15),
-      trailing: Icon(Icons.arrow_forward_ios_rounded, size: 20),
+      trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 20),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),
       ),

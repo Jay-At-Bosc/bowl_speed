@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-import '../utils/colors.dart';
-import 'custom_drop_down.dart';
-import 'custom_lable_text.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
 class CustomFormField extends StatelessWidget {
   const CustomFormField({

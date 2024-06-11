@@ -1,5 +1,5 @@
-import 'package:bowl_speed/services/controllers/manual_calc_controller.dart';
-import 'package:get/get.dart';
+import 'package:bowl_speed/imports_manager.dart';
+
 
 class ManualCalcBinding extends Bindings {
   @override

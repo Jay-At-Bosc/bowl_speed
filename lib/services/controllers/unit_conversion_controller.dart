@@ -1,14 +1,6 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'dart:developer';
 
-import 'package:flutter/material.dart';
-
-import 'package:get/get.dart';
-
-import '../../utils/constants.dart';
-import '../../utils/enums.dart';
-import '../../utils/labels.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
 class UnitConversionController extends GetxController {
   TextEditingController distanceController = TextEditingController(text: '1.0');
@@ -136,4 +128,3 @@ class UnitConversionController extends GetxController {
     return Constants.speedFactors[converstionString] ?? 1.0;
   }
 }
-

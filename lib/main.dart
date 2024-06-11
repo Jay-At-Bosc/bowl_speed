@@ -1,24 +1,4 @@
-// ignore_for_file: prefer_const_constructors
-
-//import 'package:bowl_speed/services/controllers/bowler_controller.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:get/get.dart';
-
-import 'pages/home/home.dart';
-// import 'services/controllers/manual_calc_controller.dart';
-
-// import 'services/controllers/menu_feature_controller.dart';
-
-// import 'services/controllers/quick_tap_controller.dart';
-// import 'services/controllers/unit_conversion_controller.dart';
-// import 'services/controllers/settings_controller.dart';
-
-// import 'services/controllers/video_measure_controller.dart';
-import 'services/bindings/global_binding.dart';
-import 'services/routes/app_pages.dart';
-import 'services/routes/app_routes.dart';
-import 'utils/db_helper.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,8 +6,8 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  await DatabaseHelper.instance.database; // Ensure database is initialized
-  
+  await DatabaseHelper.instance.database; 
+
   runApp(const MyApp());
 }
 
@@ -45,7 +25,7 @@ class MyApp extends StatelessWidget {
       ),
       initialBinding: GlobalBinding(),
       initialRoute: AppPages.initial,
-      home: HomeScreen(),
+      home: const HomeScreen(),
       getPages: AppPages.routes,
     );
   }

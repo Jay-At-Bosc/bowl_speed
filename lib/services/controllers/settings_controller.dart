@@ -1,16 +1,6 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'dart:developer';
 
-import 'package:bowl_speed/services/controllers/quick_tap_controller.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../Pages/settings/custom_pitch_size_change_dialogue.dart';
-import '../../utils/enums.dart';
-
-
-
+import 'package:bowl_speed/imports_manager.dart';
 
 class SettingsController extends GetxController {
   static SettingsController instance = Get.find<SettingsController>();

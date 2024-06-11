@@ -1,10 +1,6 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names
 
-import 'package:bowl_speed/widgets/custom_app_bar.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
-import '../utils/labels.dart';
 
 class PrivacyPolicy extends StatelessWidget {
   const PrivacyPolicy({super.key});

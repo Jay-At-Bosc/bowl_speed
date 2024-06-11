@@ -1,17 +1,8 @@
 // ignore_for_file: unused_import
 
-import 'package:bowl_speed/services/controllers/bowler_controller.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
-import '../../services/controllers/quick_tap_controller.dart';
-import '../../services/routes/app_pages.dart';
-import '../../utils/colors.dart';
-import '../../utils/labels.dart';
-import '../../widgets/custom_app_bar.dart';
-import '../../widgets/custom_lable_text.dart';
-import '../bowler/bowler_detail.dart';
+
 
 class HomeBanner extends StatelessWidget {
   const HomeBanner({

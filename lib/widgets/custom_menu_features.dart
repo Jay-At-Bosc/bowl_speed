@@ -1,10 +1,5 @@
-// ignore_for_file: prefer_const_constructors
+import 'package:bowl_speed/imports_manager.dart';
 
-import 'package:bowl_speed/services/controllers/menu_feature_controller.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../utils/colors.dart';
 
 class CustomMenuFeatures extends GetView<MenuFeatureController> {
   const CustomMenuFeatures({

@@ -50,6 +50,11 @@ dependencies:
   file_picker: ^5.2.6
   sensors_plus: ^5.0.1
   
+dependency_overrides:
+  cached_video_player:
+    git:
+        url: https://github.com/vikram25897/flutter_cached_video_player
+        ref: feature/gradle_version_bump
 
 dev_dependencies:
   flutter_test:

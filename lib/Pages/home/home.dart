@@ -1,17 +1,6 @@
 // ignore_for_file: unused_import
+import 'package:bowl_speed/imports_manager.dart';
 
-import 'package:bowl_speed/services/controllers/manual_calc_controller.dart';
-import 'package:bowl_speed/services/controllers/quick_tap_controller.dart';
-import 'package:bowl_speed/utils/colors.dart';
-import 'package:flutter/material.dart';
-
-import 'package:get/get.dart';
-
-import '../../services/controllers/video_measure_controller.dart';
-import 'calculation_section.dart';
-import 'home_banner.dart';
-import 'information_section.dart';
-import 'menu_section_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

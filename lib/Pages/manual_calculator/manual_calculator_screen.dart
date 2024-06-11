@@ -1,14 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
-import 'package:bowl_speed/services/controllers/manual_calc_controller.dart';
-import 'package:bowl_speed/utils/validators.dart';
-import 'package:bowl_speed/widgets/custom_app_bar.dart';
-
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../utils/colors.dart';
-import '../../utils/labels.dart';
-import '../../widgets/custom_textformfield.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
 class ManualCalculatorScreen extends GetView<ManualCalculatorController> {
   const ManualCalculatorScreen({super.key});

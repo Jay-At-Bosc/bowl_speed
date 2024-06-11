@@ -1,20 +1,10 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'package:bowl_speed/utils/colors.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-import '../../services/routes/app_routes.dart';
-import '../../utils/labels.dart';
-import '../../utils/validators.dart';
-import '../../widgets/custom_elevated_button_with_icon.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
 void customPitchSizeChangeDialog(
     TextEditingController controller, Function() onChange, Key key) {
   Get.defaultDialog(
     title: Labels.changePitchMeter,
-    titleStyle: TextStyle(fontSize: 22.0),
+    titleStyle: const TextStyle(fontSize: 22.0),
     content: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Form(

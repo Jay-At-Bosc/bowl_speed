@@ -1,20 +1,5 @@
 import 'dart:async';
-
-
-import 'package:bowl_speed/services/models/quick_tap_model.dart';
-import 'package:bowl_speed/utils/colors.dart';
-import 'package:bowl_speed/utils/db_helper.dart';
-import 'package:bowl_speed/utils/formate_functions.dart';
-import 'package:circular_countdown_timer/circular_countdown_timer.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:iconsax/iconsax.dart';
-
-import '../../utils/labels.dart';
-import '../routes/app_pages.dart';
-import '../../pages/manual_calculator/custom_result_dialogue.dart';
-import '../models/bowler_report_model.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
 class QuickTapController extends GetxController {
   static QuickTapController get instance => Get.find();
@@ -106,8 +91,9 @@ class QuickTapController extends GetxController {
     calculateSpeed();
     var result =
         "${speedInKmph.toStringAsFixed(1)} km/h - ${speedInMph.toStringAsFixed(1)} mph";
-    customResultDialogue(
-      'Result',
+    customAnimatedDialogue(
+      Get.context!,
+      Labels.result,
       result,
       () async {
         QuickTapModel model = QuickTapModel(
@@ -125,42 +111,6 @@ class QuickTapController extends GetxController {
         );
       },
     );
-    // Get.defaultDialog(
-    //   titleStyle: GoogleFonts.rubik(fontSize: 18),
-    //   middleTextStyle: GoogleFonts.rubik(fontSize: 14),
-    //   barrierDismissible: false,
-    //   title: "Result",
-    //   middleText:
-    //       "${speedInKmph.toStringAsFixed(1)} km/h - ${speedInMph.toStringAsFixed(1)} mph",
-    //   confirm: ElevatedButton(
-    //     onPressed: () async {
-
-    //     },
-    //     style: ElevatedButton.styleFrom(
-    //       foregroundColor: AppColors.textWhiteColor,
-    //       backgroundColor: AppColors.primaryColor,
-    //       shape: RoundedRectangleBorder(
-    //         borderRadius: BorderRadius.circular(10),
-    //       ),
-    //     ),
-    //     child: const Text("Save"),
-    //   ),
-    //   cancel: ElevatedButton(
-    //     onPressed: () {
-    //       Get.back();
-    //       countDownController.reset();
-    //       update([durationId, timerId]);
-    //     },
-    //     style: ElevatedButton.styleFrom(
-    //       foregroundColor: AppColors.textDarkColor,
-    //       backgroundColor: AppColors.textWhiteColor,
-    //       shape: RoundedRectangleBorder(
-    //         borderRadius: BorderRadius.circular(10),
-    //       ),
-    //     ),
-    //     child: const Text("Cancel"),
-    //   ),
-    // );
   }
 
   void calculateSpeed() {
@@ -243,7 +193,7 @@ class QuickTapController extends GetxController {
           Iconsax.save_add,
           size: 20,
         ),
-        label:   Text(Labels.save),
+        label: Text(Labels.save),
       ),
     );
   }

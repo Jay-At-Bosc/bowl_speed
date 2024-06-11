@@ -1,12 +1,5 @@
-// ignore_for_file: unused_import
+import 'package:bowl_speed/imports_manager.dart';
 
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-import '../pages/quick_tap/quick_tap_screen.dart';
-import '../utils/colors.dart';
-import 'custom_lable_text.dart';
 
 class CustomCardRow extends StatelessWidget {
   const CustomCardRow({
