@@ -1,41 +1,51 @@
 // ignore_for_file: unused_import
 import 'package:bowl_speed/imports_manager.dart';
 
+class HomeController extends GetxController {
+  @override
+  void onInit() {
+    super.onInit();
+    update();
+  }
+}
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<VideoMeasureController>(
-      builder: (controller) => Scaffold(
-        backgroundColor: AppColors.textWhiteColor,
-        body: CustomScrollView(
-          slivers: [
-            SliverPersistentHeader(
-              pinned: true,
-              delegate: _SliverAppBarDelegate(
-                minHeight: Get.height * 0.47,
-                maxHeight: Get.height * 0.47,
-                child: const HomeBanner(),
-              ),
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    return Scaffold(
+      backgroundColor: AppColors.textWhiteColor,
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          SliverPersistentHeader(
+            pinned: true,
+            delegate: _SliverAppBarDelegate(
+              minHeight: Get.height * 0.47,
+              maxHeight: Get.height * 0.47,
+              child: const HomeBanner(),
             ),
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  // QuickTap & Video Tap section
-                  const MenuSectionCard(),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                // QuickTap & Video Tap section
+                const MenuSectionCard(),
 
-                  // Information section
-                  const InformationSection(),
+                // Information section
+                const InformationSection(),
 
-                  // Calculation & Converters section
-                  const CalculationSection(),
-                ],
-              ),
+                // Calculation & Converters section
+                const CalculationSection(),
+                const SizedBox(
+                  height: 18,
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

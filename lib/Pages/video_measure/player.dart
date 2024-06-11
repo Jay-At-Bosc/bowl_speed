@@ -1,6 +1,4 @@
-
 import 'package:bowl_speed/imports_manager.dart';
-
 
 class Player extends GetView<VideoMeasureController> {
   const Player({super.key});
@@ -15,7 +13,7 @@ class Player extends GetView<VideoMeasureController> {
     //     DeviceOrientation.landscapeRight,
     //   ]);
     // });
-
+    // SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
     return Scaffold(
       backgroundColor: AppColors.textDarkColor,
       appBar: CustomAppBar(

@@ -174,13 +174,27 @@ class DatabaseHelper {
 
   Future<bool> deleteBowlerRecords(String name) async {
     final db = await database;
-    final rowsAffected = await db.delete(
-      TablesName.quickTapCalculator,
-      where: 'bowler = ?',
-      whereArgs: [name],
-    );
+    try {
+      final rowsAffected = await db.delete(
+        TablesName.quickTapCalculator,
+        where: 'bowler = ?',
+        whereArgs: [name],
+      );
 
-    return rowsAffected > 0;
+      if (rowsAffected > 0) {
+        // Optional: Log the successful deletion
+        print('Deleted $rowsAffected records for bowler: $name');
+        return true;
+      } else {
+        // Optional: Log that no records were found
+        print('No records found for bowler: $name');
+        return true;
+      }
+    } catch (e) {
+      // Optional: Log the error
+      print('Error deleting records for bowler $name: $e');
+      return true;
+    }
   }
 
   Future close() async {

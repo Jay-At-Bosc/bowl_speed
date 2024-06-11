@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:bowl_speed/imports_manager.dart';
 
-
 class VideoMeasureController extends GetxController {
   static VideoMeasureController get instance => Get.find();
   static String get screenId => "screenId";
@@ -57,17 +56,27 @@ class VideoMeasureController extends GetxController {
       Labels.result,
       "${speed.toStringAsFixed(1)} km/h",
       () async {
-        QuickTapModel model = QuickTapModel(
-            bowler: BowlerController.instance.bowlerList.first.name,
-            distance: 20,
-            time: formattedTime,
-            kmh: speed,
-            mps: speedInMph,
-            measurementType: Labels.videoTap,
-            date: formatDateTime(DateTime.now()));
-        await DatabaseHelper.instance.insertQuickTapCalculator(model);
-        Get.back();
-        Get.snackbar("Saved", "Recored Saved...");
+        if (BowlerController.instance.bowlerList.isEmpty) {
+          ScaffoldMessenger.of(Get.context!).showSnackBar(
+            const SnackBar(content: Text('Add  Bowler Details First')),
+          );
+        } else {
+          QuickTapModel model = QuickTapModel(
+              bowler: BowlerController.instance.bowlerList.isEmpty
+                  ? "Unknown"
+                  : BowlerController.instance.bowlerList.first.name,
+              distance: 20,
+              time: formattedTime,
+              kmh: speed,
+              mps: speedInMph,
+              measurementType: Labels.videoTap,
+              date: formatDateTime(DateTime.now()));
+          await DatabaseHelper.instance.insertQuickTapCalculator(model);
+          Get.back();
+          ScaffoldMessenger.of(Get.context!).showSnackBar(
+            const SnackBar(content: Text('Your Speed Record Has Been Saved')),
+          );
+        }
       },
     );
   }

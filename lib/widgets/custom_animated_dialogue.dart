@@ -1,6 +1,5 @@
 import 'package:bowl_speed/imports_manager.dart';
 
-
 void customAnimatedDialogue(
     BuildContext context, String title, String content, Function() save) {
   showGeneralDialog(
