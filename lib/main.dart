@@ -16,7 +16,6 @@ import 'pages/home/home.dart';
 
 // import 'services/controllers/video_measure_controller.dart';
 import 'services/bindings/global_binding.dart';
-import 'services/routes/app_pages.dart';
 import 'services/routes/app_routes.dart';
 import 'utils/db_helper.dart';
 

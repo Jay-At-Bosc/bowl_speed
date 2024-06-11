@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'package:bowl_speed/Pages/bowler/add_bowler_details.dart';
 import 'package:bowl_speed/services/controllers/bowler_controller.dart';
 import 'package:bowl_speed/services/models/bowler_model.dart';
 import 'package:bowl_speed/services/routes/app_routes.dart';

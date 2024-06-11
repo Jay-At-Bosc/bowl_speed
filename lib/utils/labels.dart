@@ -1,5 +1,3 @@
-import 'package:share_plus/share_plus.dart';
-
 class Labels {
   //Quick Tap
   static String get quickTap => "Quick Tap";
@@ -101,9 +99,10 @@ class Labels {
 
   // Validators
   static String get distance => "Distance";
-
+  static String get pleaseEnterThe => "Please enter the";
+  static String get valueMustbeGreaterThanZero =>
+      "Value must be greater than zero";
   static String get privacyPolicy => "Privacy Policy";
-  
 }
 
 class Images {

@@ -55,6 +55,7 @@ class UnitConversionScreen extends GetView<UnitConversionController> {
                 formOnChanged: controller.updateDistanceForm,
                 validator: Validators.validatePitchSize,
                 formKey: controller.distanceFormKey,
+                focusNode: controller.distanceFocusNode,
               ),
               const SizedBox(
                 height: 12,
@@ -65,6 +66,7 @@ class UnitConversionScreen extends GetView<UnitConversionController> {
                 dropdownItems: DistanceUnits.values.toList(),
                 result: formatDouble(controller.distanceResult),
                 dropdownonChanged: controller.updateOutputDistanceUnit,
+                
               ),
               SizedBox(
                 height: 20,
@@ -91,6 +93,7 @@ class UnitConversionScreen extends GetView<UnitConversionController> {
                 formOnChanged: controller.updateSpeedForm,
                 formKey: controller.speedFormKey,
                 validator: Validators.validateSpeed,
+                focusNode: controller.speedFocusNode,
               ),
 
               const SizedBox(
@@ -100,7 +103,7 @@ class UnitConversionScreen extends GetView<UnitConversionController> {
               CustomOutputDropdown<SpeedUnits>(
                 dropdownValue: controller.outputSpeedUnit,
                 dropdownItems: SpeedUnits.values.toList(),
-                result: controller.speedResult.toStringAsFixed(3),
+                result: formatDouble(controller.speedResult),
                 dropdownonChanged: controller.updateOutputSpeedUnit,
               ),
             ],

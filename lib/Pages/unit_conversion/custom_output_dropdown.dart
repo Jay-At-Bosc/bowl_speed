@@ -35,7 +35,6 @@ class CustomOutputDropdown<T extends Unit>
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
               decoration: BoxDecoration(
-                // color: AppColors.blueColor,
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: AppColors.blueColor, width: 1),
               ),
@@ -66,7 +65,6 @@ class CustomOutputDropdown<T extends Unit>
                       color: AppColors.textDarkColor.withOpacity(0.9),
                       fontWeight: FontWeight.w400,
                       fontSize: 14),
-                  // borderRadius: BorderRadius.circular(10),
                   labelText: result,
                   enabled: false,
                   border: OutlineInputBorder(

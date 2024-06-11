@@ -42,6 +42,8 @@ class HomeScreen extends StatelessWidget {
 
                   // Calculation & Converters section
                   const CalculationSection(),
+
+                  
                 ],
               ),
             ),

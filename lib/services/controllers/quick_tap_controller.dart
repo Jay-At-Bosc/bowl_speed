@@ -1,17 +1,14 @@
 import 'dart:async';
+import 'dart:developer';
 
-
+import 'package:bowl_speed/services/controllers/settings_controller.dart';
 import 'package:bowl_speed/services/models/quick_tap_model.dart';
-import 'package:bowl_speed/utils/colors.dart';
 import 'package:bowl_speed/utils/db_helper.dart';
 import 'package:bowl_speed/utils/formate_functions.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:iconsax/iconsax.dart';
 
-import '../../utils/labels.dart';
 import '../routes/app_pages.dart';
 import '../../pages/manual_calculator/custom_result_dialogue.dart';
 import '../models/bowler_report_model.dart';
@@ -177,75 +174,84 @@ class QuickTapController extends GetxController {
     update([speedId]);
   }
 
-  void changeDistance() {
-    Get.defaultDialog(
-      title: "Change Pitch Meter",
-      titleStyle: GoogleFonts.rubik(fontSize: 18),
-      titlePadding: const EdgeInsets.all(16.0),
-      barrierDismissible: false,
-      content: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: TextFormField(
-          controller: meterTextController,
-          // initialValue: "20.0",
-          keyboardType: TextInputType.number,
-          maxLength: 5,
-          decoration: InputDecoration(
-            border: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent)),
-            filled: true,
-            label: const Text("Enter Meter"),
-            labelStyle: GoogleFonts.rubik(color: AppColors.primaryColor),
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: AppColors.primaryColor),
-            ),
-            fillColor: AppColors.containerColor,
-          ),
-          validator: (value) {
-            if (value!.isEmpty) {
-              return "Please Enter something";
-            }
-            return null;
-          },
-        ),
-      ),
-      cancel: ElevatedButton.icon(
-        onPressed: () {
-          Get.back();
-          countDownController.reset();
-          update([durationId, timerId]);
-        },
-        style: ElevatedButton.styleFrom(
-          foregroundColor: AppColors.textDarkColor,
-          backgroundColor: AppColors.containerColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-        icon: const Icon(Iconsax.close_circle),
-        label: const Text("Cancel"),
-      ),
-      confirm: ElevatedButton.icon(
-        onPressed: () {
-          distance = double.parse(meterTextController.text);
-          Get.back();
-          countDownController.reset();
-          update([durationId, timerId]);
-        },
-        style: ElevatedButton.styleFrom(
-          foregroundColor: AppColors.textWhiteColor,
-          backgroundColor: AppColors.primaryColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-        icon: const Icon(
-          Iconsax.save_add,
-          size: 20,
-        ),
-        label:   Text(Labels.save),
-      ),
-    );
+  void changeDistance() async {
+    // Get.defaultDialog(
+    //   title: "Change Pitch Meter",
+    //   titleStyle: GoogleFonts.rubik(fontSize: 18),
+    //   titlePadding: const EdgeInsets.all(16.0),
+    //   barrierDismissible: false,
+    //   content: Padding(
+    //     padding: const EdgeInsets.symmetric(horizontal: 10),
+    //     child: TextFormField(
+    //       controller: meterTextController,
+    //       // initialValue: "20.0",
+    //       keyboardType: TextInputType.number,
+    //       maxLength: 5,
+    //       decoration: InputDecoration(
+    //         border: const OutlineInputBorder(
+    //             borderSide: BorderSide(color: Colors.transparent)),
+    //         filled: true,
+    //         label: const Text("Enter Meter"),
+    //         labelStyle: GoogleFonts.rubik(color: AppColors.primaryColor),
+    //         focusedBorder: const OutlineInputBorder(
+    //           borderSide: BorderSide(color: AppColors.primaryColor),
+    //         ),
+    //         fillColor: AppColors.containerColor,
+    //       ),
+    //       validator: (value) {
+    //         if (value!.isEmpty) {
+    //           return "Please Enter something";
+    //         }
+    //         return null;
+    //       },
+    //     ),
+    //   ),
+    //   cancel: ElevatedButton.icon(
+    //     onPressed: () {
+    //       Get.back();
+    //       countDownController.reset();
+    //       update([durationId, timerId]);
+    //     },
+    //     style: ElevatedButton.styleFrom(
+    //       foregroundColor: AppColors.textDarkColor,
+    //       backgroundColor: AppColors.containerColor,
+    //       shape: RoundedRectangleBorder(
+    //         borderRadius: BorderRadius.circular(10),
+    //       ),
+    //     ),
+    //     icon: const Icon(Iconsax.close_circle),
+    //     label: const Text("Cancel"),
+    //   ),
+    //   confirm: ElevatedButton.icon(
+    //     onPressed: () {
+    //       distance = double.parse(meterTextController.text);
+    //       Get.back();
+    //       countDownController.reset();
+    //       update([durationId, timerId]);
+    //     },
+    //     style: ElevatedButton.styleFrom(
+    //       foregroundColor: AppColors.textWhiteColor,
+    //       backgroundColor: AppColors.primaryColor,
+    //       shape: RoundedRectangleBorder(
+    //         borderRadius: BorderRadius.circular(10),
+    //       ),
+    //     ),
+    //     icon: const Icon(
+    //       Iconsax.save_add,
+    //       size: 20,
+    //     ),
+    //     label:   Text(Labels.save),
+    //   ),
+    // );
+    await SettingsController.instance.onCricket();
+    onSave();
+  }
+
+  void onSave() {
+    distance = double.parse(SettingsController.instance.cricketController.text);
+    meterTextController.text = distance.toString();
+    log("onSave: $distance");
+    update([durationId, timerId]);
   }
 
   void getHistory() async {
