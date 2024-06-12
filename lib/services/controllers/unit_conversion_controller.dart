@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 
 import '../../utils/constants.dart';
 import '../../utils/enums.dart';
-import '../../utils/labels.dart';
 
 class UnitConversionController extends GetxController {
   TextEditingController distanceController = TextEditingController(text: '1.0');

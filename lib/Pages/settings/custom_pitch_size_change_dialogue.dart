@@ -5,7 +5,7 @@ Future<void> customPitchSizeChangeDialog(
   await showGeneralDialog(
     context: Get.context!,
     barrierLabel: 'Label',
-    transitionDuration: Duration(milliseconds: 300),
+    transitionDuration: const Duration(milliseconds: 300),
     pageBuilder: (context, animation1, animation2) {
       return Container();
     },

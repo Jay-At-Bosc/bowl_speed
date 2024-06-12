@@ -215,6 +215,12 @@ class QuickTapController extends GetxController {
     Get.toNamed(Routes.quickTapCalcHistory);
   }
 
+  void updatedHistory() async{
+    historyList = await DatabaseHelper.instance.readAllQuickTapCalcs();
+    filterHistoryList.addAll(historyList);
+    update();
+  }
+
   void filterHistory(String value) {
     if (value.isEmpty) {
       filterHistoryList.assignAll(historyList);

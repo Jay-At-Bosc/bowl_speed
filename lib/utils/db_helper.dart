@@ -183,16 +183,16 @@ class DatabaseHelper {
 
       if (rowsAffected > 0) {
         // Optional: Log the successful deletion
-        print('Deleted $rowsAffected records for bowler: $name');
+        // print('Deleted $rowsAffected records for bowler: $name');
         return true;
       } else {
         // Optional: Log that no records were found
-        print('No records found for bowler: $name');
+        // print('No records found for bowler: $name');
         return true;
       }
     } catch (e) {
       // Optional: Log the error
-      print('Error deleting records for bowler $name: $e');
+      // print('Error deleting records for bowler $name: $e');
       return true;
     }
   }

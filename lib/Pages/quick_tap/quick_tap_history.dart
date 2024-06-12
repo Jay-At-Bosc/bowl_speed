@@ -23,7 +23,7 @@ class QuickTapHistoryScreen extends GetView<QuickTapController> {
                   height: 6.0,
                 ),
                 GetBuilder<QuickTapController>(
-                  builder: (context) {
+                  builder: (ct) {
                     return ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),

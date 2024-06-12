@@ -82,6 +82,8 @@ class BowlerController extends GetxController
     if (isDeleted && isRecordsDeleted) {
       log("deleted");
       getAllBowlers();
+      QuickTapController.instance.updatedHistory();
+      // VideoMeasureController.instance.getHistory();
     }
     update(['bowler']);
     // Get.to(() => const QuickTapHistoryScreen());
