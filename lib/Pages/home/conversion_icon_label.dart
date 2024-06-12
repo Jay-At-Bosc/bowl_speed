@@ -1,6 +1,5 @@
 import 'package:bowl_speed/imports_manager.dart';
 
-
 class ConversionIconLabel extends StatelessWidget {
   const ConversionIconLabel({
     super.key,

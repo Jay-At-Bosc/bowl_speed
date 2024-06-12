@@ -6,10 +6,6 @@ class QuickTapScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: unused_local_variable
-    final bowler = Get.put(BowlerController());
-    final controller = Get.put(QuickTapController());
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: CustomAppBar(
@@ -87,7 +83,8 @@ class QuickTapScreen extends StatelessWidget {
                                     //     ? ct.bowlerList[0].name
                                     //     : "",
                                     onChanged: (String? newValue) {
-                                      controller.selectBowler(newValue!);
+                                      QuickTapController.instance
+                                          .selectBowler(newValue!);
                                     },
                                     items: <DropdownMenuItem<String>>[
                                       const DropdownMenuItem<String>(
@@ -146,7 +143,7 @@ class QuickTapScreen extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
-                                controller.changeDistance();
+                                QuickTapController.instance.changeDistance();
                               },
                               child: const Icon(
                                 Iconsax.edit_2,
@@ -160,7 +157,6 @@ class QuickTapScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 4.0, top: 4.0),
                         child: Row(
-                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Padding(
@@ -176,10 +172,10 @@ class QuickTapScreen extends StatelessWidget {
                             ),
                             GetBuilder<QuickTapController>(
                                 id: QuickTapController.speedId,
-                                builder: (context) {
+                                builder: (ct) {
                                   return Flexible(
                                     child: CustomLabelText(
-                                      label: controller.speed,
+                                      label: ct.speed,
                                       style: GoogleFonts.rubik(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w500),
@@ -230,13 +226,13 @@ class QuickTapScreen extends StatelessWidget {
               //Clock
               GetBuilder<QuickTapController>(
                   id: QuickTapController.timerId,
-                  builder: (context) {
+                  builder: (ctx) {
                     return Column(
                       children: [
                         CircularCountDownTimer(
                           duration: 60,
                           initialDuration: 0,
-                          controller: controller.countDownController,
+                          controller: ctx.countDownController,
                           width: Get.width / 1.7,
                           height: Get.height / 2.4,
                           ringColor: Colors.grey[300]!,
@@ -281,7 +277,7 @@ class QuickTapScreen extends StatelessWidget {
                         ),
                         GetBuilder<QuickTapController>(
                             id: "bowler",
-                            builder: (context) {
+                            builder: (ctx) {
                               return GetBuilder<BowlerController>(
                                   id: "bowler",
                                   builder: (ct) {
@@ -290,8 +286,7 @@ class QuickTapScreen extends StatelessWidget {
                                       height: Get.width * 0.13,
                                       child: ElevatedButton(
                                         onPressed: ct.bowlerList.isEmpty ||
-                                                controller
-                                                    .selectedBowler.isEmpty
+                                                ctx.selectedBowler.isEmpty
                                             ? () {
                                                 Get.defaultDialog(
                                                     title: "Oops!!",
@@ -322,9 +317,9 @@ class QuickTapScreen extends StatelessWidget {
                                                       ),
                                                     ));
                                               }
-                                            : controller.isTimerOn
-                                                ? controller.stopTimer
-                                                : controller.startTimer,
+                                            : ctx.isTimerOn
+                                                ? ctx.stopTimer
+                                                : ctx.startTimer,
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: AppColors.orangeColor
                                               .withOpacity(0.9),
@@ -332,7 +327,7 @@ class QuickTapScreen extends StatelessWidget {
                                               AppColors.textWhiteColor,
                                         ),
                                         child: Text(
-                                          controller.isTimerOn == true
+                                          ctx.isTimerOn == true
                                               ? Labels.finish
                                               : Labels.start,
                                           style:

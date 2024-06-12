@@ -91,6 +91,5 @@ void customResultDialogue(
     ),
     transitionDuration: const Duration(milliseconds: 500),
     transitionCurve: Curves.easeInOut,
-    //     transition: CustomBounceTransition(),
   );
 }

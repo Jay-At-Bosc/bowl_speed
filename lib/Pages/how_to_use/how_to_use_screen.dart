@@ -1,16 +1,12 @@
 import 'package:bowl_speed/imports_manager.dart';
 
-
 class HowToUseScreen extends StatelessWidget {
   const HowToUseScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        title: Labels.howToUse, 
-        isHistoryBtnVisible: false
-      ),
+      appBar: CustomAppBar(title: Labels.howToUse, isHistoryBtnVisible: false),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView.builder(
@@ -69,7 +65,6 @@ class HowToUseScreen extends StatelessWidget {
           style: GoogleFonts.rubik(fontSize: 16),
         ),
       ),
-      
     );
   }
 }

@@ -1,8 +1,5 @@
 import 'package:bowl_speed/imports_manager.dart';
 
-
-
-
 class MenuSectionCard extends StatelessWidget {
   const MenuSectionCard({
     super.key,
@@ -13,7 +10,6 @@ class MenuSectionCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
       width: double.maxFinite,
-      // height: 130,
       decoration: const BoxDecoration(color: AppColors.textWhiteColor),
       child: IntrinsicHeight(
         child: Column(

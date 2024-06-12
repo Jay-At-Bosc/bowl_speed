@@ -98,10 +98,6 @@ class BowlerReportScreen extends GetView<QuickTapController> {
           label: bowler.capitalize!,
           style: GoogleFonts.rubik(fontWeight: FontWeight.w500, fontSize: 16),
         ),
-        // CustomLabelText(
-        //   label: Labels.cricket,
-        //   style: GoogleFonts.rubik(fontSize: 16, fontWeight: FontWeight.w500),
-        // ),
       ],
     );
   }

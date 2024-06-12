@@ -9,7 +9,6 @@ class InformationSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-      // decoration: BoxDecoration(color: AppColors.containerColor.withOpacity(1)),
       child: IntrinsicHeight(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
