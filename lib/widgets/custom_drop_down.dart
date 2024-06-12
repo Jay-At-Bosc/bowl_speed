@@ -1,6 +1,5 @@
 import 'package:bowl_speed/imports_manager.dart';
 
-
 class CustomDropDown extends StatelessWidget {
   const CustomDropDown({
     super.key,

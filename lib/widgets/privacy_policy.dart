@@ -1,6 +1,4 @@
-
 import 'package:bowl_speed/imports_manager.dart';
-
 
 class PrivacyPolicy extends StatelessWidget {
   const PrivacyPolicy({super.key});
@@ -21,9 +19,9 @@ class PrivacyPolicy extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomPermissionHeading(permissionNames[index]),
+                  customPermissionHeading(permissionNames[index]),
                   const SizedBox(height: 6),
-                  CustomPermissionDescription(
+                  customPermissionDescription(
                       permissions[permissionNames[index]] ?? []),
                 ],
               ),
@@ -34,7 +32,7 @@ class PrivacyPolicy extends StatelessWidget {
     );
   }
 
-  Widget CustomPermissionHeading(String PermissionName) {
+  Widget customPermissionHeading(String permissionName) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.max,
@@ -45,7 +43,7 @@ class PrivacyPolicy extends StatelessWidget {
         ),
         const SizedBox(width: 10),
         Text(
-          PermissionName,
+          permissionName,
           style: GoogleFonts.rubik(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ],
@@ -53,7 +51,7 @@ class PrivacyPolicy extends StatelessWidget {
   }
 
   // W
-  Widget CustomPermissionDescription(List<String> permissionDescription) {
+  Widget customPermissionDescription(List<String> permissionDescription) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: permissionDescription.map((description) {

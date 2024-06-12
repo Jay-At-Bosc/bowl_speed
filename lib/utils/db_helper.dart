@@ -112,6 +112,8 @@ class DatabaseHelper {
       ScaffoldMessenger.of(Get.context!).showSnackBar(
         const SnackBar(content: Text('Bowler Detail Stored Successfully')),
       );
+      BowlerController.instance.nameController.text = '';
+      BowlerController.instance.ageController.text = '';
     }
   }
 

@@ -2,8 +2,6 @@
 
 import 'package:bowl_speed/imports_manager.dart';
 
-
-
 class HomeBanner extends StatelessWidget {
   const HomeBanner({
     super.key,
@@ -25,12 +23,14 @@ class HomeBanner extends StatelessWidget {
             child: Stack(
               children: [
                 CustomAppBar(
-                  title: "",
-                  isHome: true,
-                  isBack: false,
-                  isHistoryBtnVisible: true,
-                  onHistory: QuickTapController.instance.getHistory,
-                ),
+                    title: "",
+                    isHome: true,
+                    isBack: false,
+                    isHistoryBtnVisible: true,
+                    onHistory: () {
+                      QuickTapController.instance.updatedHistory();
+                      Get.toNamed(Routes.quickTapCalcHistory);
+                    }),
                 Positioned(
                   top: 60,
                   left: 20,

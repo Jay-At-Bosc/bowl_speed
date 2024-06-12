@@ -10,70 +10,73 @@ class QuickTapHistoryScreen extends GetView<QuickTapController> {
       appBar: CustomAppBar(
         title: Labels.history,
       ),
-      body: controller.filterHistoryList.isEmpty
-          ? Center(child: Text(Labels.historyNotFound))
-          : ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              children: [
-                CustomFilterDropDown(
-                  controller: controller,
-                  isHistory: true,
-                ),
-                const SizedBox(
-                  height: 6.0,
-                ),
-                GetBuilder<QuickTapController>(
-                  builder: (ct) {
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: controller.filterHistoryList.length,
-                      itemBuilder: (context, index) {
-                        final history = controller.filterHistoryList[index];
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 16.0),
-                          child: Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: AppColors.containerColor,
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  _buildHeader(history.bowler),
-                                  const SizedBox(height: 16.0),
-                                  _buildCustomCardRow("${Labels.pitchSize} :",
-                                      history.distance.toString()),
-                                  _buildDivider(),
-                                  _buildCustomCardRow(
-                                      "${Labels.timeOfTravel} :", history.time),
-                                  _buildDivider(),
-                                  _buildCustomCardRow(Labels.speedKmh,
-                                      history.kmh.toStringAsFixed(2)),
-                                  _buildDivider(),
-                                  _buildCustomCardRow(Labels.speedMhp,
-                                      history.mps.toStringAsFixed(2)),
-                                  _buildDivider(),
-                                  _buildCustomCardRow(
-                                      "${Labels.measurementType} :",
-                                      history.measurementType),
-                                  _buildDivider(),
-                                  _buildCustomCardRow(
-                                      "${Labels.date} :", history.date),
-                                ],
+      body: GetBuilder<QuickTapController>(builder: (context) {
+        return controller.filterHistoryList.isEmpty
+            ? Center(child: Text(Labels.historyNotFound))
+            : ListView(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                children: [
+                  CustomFilterDropDown(
+                    controller: controller,
+                    isHistory: true,
+                  ),
+                  const SizedBox(
+                    height: 6.0,
+                  ),
+                  GetBuilder<QuickTapController>(
+                    builder: (ct) {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: controller.filterHistoryList.length,
+                        itemBuilder: (context, index) {
+                          final history = controller.filterHistoryList[index];
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 16.0),
+                            child: Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: AppColors.containerColor,
+                                borderRadius: BorderRadius.circular(12.0),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    _buildHeader(history.bowler),
+                                    const SizedBox(height: 16.0),
+                                    _buildCustomCardRow("${Labels.pitchSize} :",
+                                        history.distance.toString()),
+                                    _buildDivider(),
+                                    _buildCustomCardRow(
+                                        "${Labels.timeOfTravel} :",
+                                        history.time),
+                                    _buildDivider(),
+                                    _buildCustomCardRow(Labels.speedKmh,
+                                        history.kmh.toStringAsFixed(2)),
+                                    _buildDivider(),
+                                    _buildCustomCardRow(Labels.speedMhp,
+                                        history.mps.toStringAsFixed(2)),
+                                    _buildDivider(),
+                                    _buildCustomCardRow(
+                                        "${Labels.measurementType} :",
+                                        history.measurementType),
+                                    _buildDivider(),
+                                    _buildCustomCardRow(
+                                        "${Labels.date} :", history.date),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
-              ],
-            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ],
+              );
+      }),
     );
   }
 
@@ -82,7 +85,7 @@ class QuickTapHistoryScreen extends GetView<QuickTapController> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CustomLabelText(
-          label: bowler,
+          label: bowler.capitalize!,
           style: GoogleFonts.rubik(fontWeight: FontWeight.w500, fontSize: 16),
         ),
         CustomLabelText(

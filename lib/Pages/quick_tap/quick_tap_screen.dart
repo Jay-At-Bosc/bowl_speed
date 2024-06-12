@@ -72,34 +72,43 @@ class QuickTapScreen extends StatelessWidget {
                                 id: 'bowler',
                                 builder: (ct) {
                                   return DropdownButtonFormField<String>(
+                                    hint: const Text('Select Bowler'),
                                     style: GoogleFonts.rubik(
                                         color: AppColors.textDarkColor,
-                                        fontWeight: FontWeight.w400),
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12),
                                     decoration: const InputDecoration(
                                       isDense: true,
                                       contentPadding: EdgeInsets.symmetric(
                                           horizontal: 0.0, vertical: 0.0),
                                       border: InputBorder.none,
                                     ),
-                                    value: ct.bowlerList.isNotEmpty
-                                        ? ct.bowlerList[0].name
-                                        : null,
+                                    // value: ct.bowlerList.isNotEmpty
+                                    //     ? ct.bowlerList[0].name
+                                    //     : "",
                                     onChanged: (String? newValue) {
                                       controller.selectBowler(newValue!);
                                     },
-                                    items: ct.bowlerList
-                                        .map<DropdownMenuItem<String>>(
-                                            (BowlerDetails value) {
-                                      return DropdownMenuItem<String>(
-                                        value: value.name,
-                                        child: Text(
-                                          value.name,
-                                          overflow: TextOverflow.ellipsis,
-                                          softWrap: true,
-                                          maxLines: 1,
-                                        ),
-                                      );
-                                    }).toList(),
+                                    items: <DropdownMenuItem<String>>[
+                                      const DropdownMenuItem<String>(
+                                        value:
+                                            "", // Use null for the default option
+                                        child: Text('Select Bowler'),
+                                      ),
+                                      ...ct.bowlerList
+                                          .map<DropdownMenuItem<String>>(
+                                              (BowlerDetails value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value.name,
+                                          child: Text(
+                                            value.name,
+                                            overflow: TextOverflow.ellipsis,
+                                            softWrap: true,
+                                            maxLines: 1,
+                                          ),
+                                        );
+                                      }),
+                                    ],
                                     validator: (value) => value == null
                                         ? 'Please select an option'
                                         : null,
@@ -270,55 +279,68 @@ class QuickTapScreen extends StatelessWidget {
                             }
                           },
                         ),
-                        GetBuilder<BowlerController>(
+                        GetBuilder<QuickTapController>(
                             id: "bowler",
-                            builder: (ct) {
-                              return SizedBox(
-                                width: Get.width * 0.4,
-                                height: Get.width * 0.13,
-                                child: ElevatedButton(
-                                  onPressed: ct.bowlerList.isEmpty
-                                      ? () {
-                                          Get.defaultDialog(
-                                              title: "Oops!!",
-                                              middleText:
-                                                  "Please Add Bolwers First",
-                                              confirm: ElevatedButton(
-                                                onPressed: () {
-                                                  AppPages.back;
-                                                  Get.toNamed(
-                                                      Routes.addBowlerDetails);
-                                                },
-                                                style: ElevatedButton.styleFrom(
-                                                  backgroundColor: AppColors
-                                                      .orangeColor
-                                                      .withOpacity(0.9),
-                                                  foregroundColor:
-                                                      AppColors.textWhiteColor,
-                                                ),
-                                                child: Text(
-                                                  Labels.addBowler,
-                                                  style: GoogleFonts.rubik(
-                                                      fontSize: 16),
-                                                ),
-                                              ));
-                                        }
-                                      : controller.isTimerOn
-                                          ? controller.stopTimer
-                                          : controller.startTimer,
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor:
-                                        AppColors.orangeColor.withOpacity(0.9),
-                                    foregroundColor: AppColors.textWhiteColor,
-                                  ),
-                                  child: Text(
-                                    controller.isTimerOn == true
-                                        ? Labels.finish
-                                        : Labels.start,
-                                    style: GoogleFonts.rubik(fontSize: 16),
-                                  ),
-                                ),
-                              );
+                            builder: (context) {
+                              return GetBuilder<BowlerController>(
+                                  id: "bowler",
+                                  builder: (ct) {
+                                    return SizedBox(
+                                      width: Get.width * 0.4,
+                                      height: Get.width * 0.13,
+                                      child: ElevatedButton(
+                                        onPressed: ct.bowlerList.isEmpty ||
+                                                controller
+                                                    .selectedBowler.isEmpty
+                                            ? () {
+                                                Get.defaultDialog(
+                                                    title: "Oops!!",
+                                                    middleText:
+                                                        "Please Add Bolwers First Or Select From Existing One!!",
+                                                    confirm: ElevatedButton(
+                                                      onPressed: () {
+                                                        AppPages.back;
+                                                        Get.toNamed(Routes
+                                                            .addBowlerDetails);
+                                                      },
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                        backgroundColor:
+                                                            AppColors
+                                                                .orangeColor
+                                                                .withOpacity(
+                                                                    0.9),
+                                                        foregroundColor:
+                                                            AppColors
+                                                                .textWhiteColor,
+                                                      ),
+                                                      child: Text(
+                                                        Labels.addBowler,
+                                                        style:
+                                                            GoogleFonts.rubik(
+                                                                fontSize: 16),
+                                                      ),
+                                                    ));
+                                              }
+                                            : controller.isTimerOn
+                                                ? controller.stopTimer
+                                                : controller.startTimer,
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: AppColors.orangeColor
+                                              .withOpacity(0.9),
+                                          foregroundColor:
+                                              AppColors.textWhiteColor,
+                                        ),
+                                        child: Text(
+                                          controller.isTimerOn == true
+                                              ? Labels.finish
+                                              : Labels.start,
+                                          style:
+                                              GoogleFonts.rubik(fontSize: 16),
+                                        ),
+                                      ),
+                                    );
+                                  });
                             }),
                       ],
                     );

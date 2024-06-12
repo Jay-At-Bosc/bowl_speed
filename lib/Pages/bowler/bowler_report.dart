@@ -26,60 +26,67 @@ class BowlerReportScreen extends GetView<QuickTapController> {
       appBar: CustomAppBar(
         title: Labels.bowlerReport,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              CustomFilterDropDown(
-                controller: controller,
-                isHistory: false,
+      body: controller.filterList.isEmpty
+          ? Center(child: Text(Labels.historyNotFound))
+          : Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    CustomFilterDropDown(
+                      controller: controller,
+                      isHistory: false,
+                    ),
+                    const SizedBox(height: 6.0),
+                    GetBuilder<QuickTapController>(builder: (context) {
+                      return controller.filterList.isNotEmpty
+                          ? ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: controller.filterList.length,
+                              itemBuilder: (context, index) {
+                                final report = controller.filterList[index];
+                                return Padding(
+                                  padding: const EdgeInsets.only(bottom: 16.0),
+                                  child: Container(
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color:
+                                          AppColors.blueColor.withOpacity(0.15),
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          _buildHeader(report.name),
+                                          const SizedBox(height: 16.0),
+                                          _buildCustomCardRow(
+                                              "${Labels.minSpeed} :",
+                                              "${report.minSpeed.toStringAsFixed(1)} Km/h"),
+                                          _buildDivider(),
+                                          _buildCustomCardRow(
+                                              "${Labels.avgSpeed} :",
+                                              "${report.avgSpeed.toStringAsFixed(1)} Km/h"),
+                                          _buildDivider(),
+                                          _buildCustomCardRow(Labels.maxSpeed,
+                                              "${report.maxSpeed.toStringAsFixed(1)} Km/h"),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            )
+                          : const Text("Not Found");
+                    }),
+                  ],
+                ),
               ),
-              const SizedBox(height: 6.0),
-              GetBuilder<QuickTapController>(builder: (context) {
-                return controller.filterList.isNotEmpty
-                    ? ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: controller.filterList.length,
-                        itemBuilder: (context, index) {
-                          final report = controller.filterList[index];
-                          return Padding(
-                            padding: const EdgeInsets.only(bottom: 16.0),
-                            child: Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: AppColors.blueColor.withOpacity(0.15),
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    _buildHeader(report.name),
-                                    const SizedBox(height: 16.0),
-                                    _buildCustomCardRow("${Labels.minSpeed} :",
-                                        "${report.minSpeed.toStringAsFixed(1)} Km/h"),
-                                    _buildDivider(),
-                                    _buildCustomCardRow("${Labels.avgSpeed} :",
-                                        "${report.avgSpeed.toStringAsFixed(1)} Km/h"),
-                                    _buildDivider(),
-                                    _buildCustomCardRow(Labels.maxSpeed,
-                                        "${report.maxSpeed.toStringAsFixed(1)} Km/h"),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      )
-                    : const Text("Not Found");
-              }),
-            ],
-          ),
-        ),
-      ),
+            ),
     );
   }
 
@@ -88,7 +95,7 @@ class BowlerReportScreen extends GetView<QuickTapController> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CustomLabelText(
-          label: bowler,
+          label: bowler.capitalize!,
           style: GoogleFonts.rubik(fontWeight: FontWeight.w500, fontSize: 16),
         ),
         // CustomLabelText(
@@ -130,19 +137,23 @@ class CustomFilterDropDown extends StatelessWidget {
           child: CustomLabelText(
             label: "${Labels.chooseBowler} :",
             style: GoogleFonts.rubik(
-                fontSize: 14,
+                fontSize: 12,
                 color: AppColors.textDarkColor.withOpacity(0.7),
                 fontWeight: FontWeight.w500),
           ),
         ),
         Flexible(
+          flex: 2,
+          fit: FlexFit.loose,
           child: GetBuilder<BowlerController>(
             id: 'bowler',
             builder: (ct) {
               return DropdownButtonFormField<String>(
+                hint: const Text('Select Bowler'),
                 style: GoogleFonts.rubik(
                     color: AppColors.textDarkColor,
-                    fontWeight: FontWeight.w400),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 12),
                 decoration: const InputDecoration(
                   // isDense: true,
                   contentPadding: EdgeInsets.symmetric(
@@ -150,13 +161,6 @@ class CustomFilterDropDown extends StatelessWidget {
                     vertical: 10.0,
                   ),
                   border: InputBorder.none,
-                  // border: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.circular(14),
-                  //     borderSide: const BorderSide(
-                  //       color: AppColors.textBlueColor,
-                  //       width: 0.5,
-                  //       style: BorderStyle.none,
-                  //     )),
                 ),
                 value: ct.bowlerList.isNotEmpty ? ct.bowlerList[0].name : null,
                 onChanged: (String? newValue) {
@@ -167,18 +171,24 @@ class CustomFilterDropDown extends StatelessWidget {
                     controller.filterReports(newValue);
                   }
                 },
-                items: ct.bowlerList
-                    .map<DropdownMenuItem<String>>((BowlerDetails value) {
-                  return DropdownMenuItem<String>(
-                    value: value.name,
-                    child: Text(
-                      value.name.toUpperCase(),
-                      overflow: TextOverflow.ellipsis,
-                      softWrap: true,
-                      maxLines: 1,
-                    ),
-                  );
-                }).toList(),
+                items: <DropdownMenuItem<String>>[
+                  const DropdownMenuItem<String>(
+                    value: "", // Use null for the default option
+                    child: Text('Select Bowler'),
+                  ),
+                  ...ct.bowlerList
+                      .map<DropdownMenuItem<String>>((BowlerDetails value) {
+                    return DropdownMenuItem<String>(
+                      value: value.name,
+                      child: Text(
+                        value.name.capitalizeFirst ?? "",
+                        overflow: TextOverflow.ellipsis,
+                        softWrap: true,
+                        maxLines: 1,
+                      ),
+                    );
+                  }),
+                ],
                 validator: (value) =>
                     value == null ? 'Please select an option' : null,
               );

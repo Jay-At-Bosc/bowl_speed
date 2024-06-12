@@ -62,9 +62,8 @@ class VideoMeasureController extends GetxController {
           );
         } else {
           QuickTapModel model = QuickTapModel(
-              bowler: BowlerController.instance.bowlerList.isEmpty
-                  ? "Unknown"
-                  : BowlerController.instance.bowlerList.first.name,
+              bowler:
+                  BowlerController.instance.bowlerList.first.name.toLowerCase(),
               distance: 20,
               time: formattedTime,
               kmh: speed,
