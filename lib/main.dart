@@ -6,15 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'pages/home/home.dart';
-// import 'services/controllers/manual_calc_controller.dart';
-
-// import 'services/controllers/menu_feature_controller.dart';
-
-// import 'services/controllers/quick_tap_controller.dart';
-// import 'services/controllers/unit_conversion_controller.dart';
-// import 'services/controllers/settings_controller.dart';
-
-// import 'services/controllers/video_measure_controller.dart';
 import 'services/bindings/global_binding.dart';
 import 'services/routes/app_routes.dart';
 import 'utils/db_helper.dart';
