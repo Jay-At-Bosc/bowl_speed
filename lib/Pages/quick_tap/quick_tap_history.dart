@@ -1,18 +1,4 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-import 'package:bowl_speed/services/controllers/quick_tap_controller.dart';
-import 'package:bowl_speed/utils/labels.dart';
-
-import '../../utils/colors.dart';
-
-import '../../widgets/custom_app_bar.dart';
-import '../../widgets/custom_card_row.dart';
-import '../../widgets/custom_lable_text.dart';
-import '../bowler/bowler_report.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
 class QuickTapHistoryScreen extends GetView<QuickTapController> {
   const QuickTapHistoryScreen({super.key});
@@ -27,7 +13,7 @@ class QuickTapHistoryScreen extends GetView<QuickTapController> {
       body: controller.filterHistoryList.isEmpty
           ? Center(child: Text(Labels.historyNotFound))
           : ListView(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
               children: [
                 CustomFilterDropDown(
                   controller: controller,
@@ -37,7 +23,7 @@ class QuickTapHistoryScreen extends GetView<QuickTapController> {
                   height: 6.0,
                 ),
                 GetBuilder<QuickTapController>(
-                  builder: (context) {
+                  builder: (ct) {
                     return ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),

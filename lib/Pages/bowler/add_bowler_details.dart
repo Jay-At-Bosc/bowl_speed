@@ -55,7 +55,7 @@ class AddBowlerDetails extends GetView<BowlerController> {
                 onPressed: () async {
                   if (controller.formKey.currentState!.validate()) {
                     BowlerDetails bowler = BowlerDetails(
-                      name: controller.nameController.text,
+                      name: controller.nameController.text.trim().toLowerCase(),
                       age: int.parse(controller.ageController.text),
                       type: controller.selectedBowlerType,
                       style: controller.selectedBowlerStyle,

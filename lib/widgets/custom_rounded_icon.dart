@@ -1,8 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
-import '../utils/colors.dart';
-import 'custom_lable_text.dart';
 
 class CustomRoundedIcon extends StatelessWidget {
   const CustomRoundedIcon({

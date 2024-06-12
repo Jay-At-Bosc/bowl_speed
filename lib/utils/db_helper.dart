@@ -1,12 +1,6 @@
-import 'dart:async';
 import 'dart:developer';
-import 'package:bowl_speed/services/models/bowler_model.dart';
-import 'package:bowl_speed/services/models/manual_calc_model.dart';
-import 'package:bowl_speed/services/models/quick_tap_model.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
+
+import 'package:bowl_speed/imports_manager.dart';
 
 class DatabaseHelper {
   static final DatabaseHelper instance = DatabaseHelper._init();
@@ -72,7 +66,7 @@ class DatabaseHelper {
   ) async {
     final db = await instance.database;
     if (await _checkTableExists(table)) return [];
-    
+
     final result = await db.query(table, orderBy: orderBy);
     return result.map((json) => fromMap(json)).toList();
   }
@@ -180,13 +174,27 @@ class DatabaseHelper {
 
   Future<bool> deleteBowlerRecords(String name) async {
     final db = await database;
-    final rowsAffected = await db.delete(
-      TablesName.quickTapCalculator,
-      where: 'bowler = ?',
-      whereArgs: [name],
-    );
+    try {
+      final rowsAffected = await db.delete(
+        TablesName.quickTapCalculator,
+        where: 'bowler = ?',
+        whereArgs: [name],
+      );
 
-    return rowsAffected > 0;
+      if (rowsAffected > 0) {
+        // Optional: Log the successful deletion
+        // print('Deleted $rowsAffected records for bowler: $name');
+        return true;
+      } else {
+        // Optional: Log that no records were found
+        // print('No records found for bowler: $name');
+        return true;
+      }
+    } catch (e) {
+      // Optional: Log the error
+      // print('Error deleting records for bowler $name: $e');
+      return true;
+    }
   }
 
   Future close() async {

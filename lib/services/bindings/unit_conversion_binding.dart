@@ -1,6 +1,5 @@
-import 'package:get/get.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
-import '../controllers/unit_conversion_controller.dart';
 
 class UnitConversionBinding extends Bindings {
   @override

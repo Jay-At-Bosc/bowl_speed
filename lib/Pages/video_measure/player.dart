@@ -1,12 +1,4 @@
-import 'package:appinio_video_player/appinio_video_player.dart';
-import 'package:bowl_speed/services/controllers/video_measure_controller.dart';
-import 'package:bowl_speed/utils/colors.dart';
-import 'package:bowl_speed/utils/labels.dart';
-import 'package:bowl_speed/widgets/custom_app_bar.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../services/controllers/quick_tap_controller.dart'; // Import for SystemChrome
+import 'package:bowl_speed/imports_manager.dart';
 
 class Player extends GetView<VideoMeasureController> {
   const Player({super.key});
@@ -21,7 +13,7 @@ class Player extends GetView<VideoMeasureController> {
     //     DeviceOrientation.landscapeRight,
     //   ]);
     // });
-
+    // SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
     return Scaffold(
       backgroundColor: AppColors.textDarkColor,
       appBar: CustomAppBar(

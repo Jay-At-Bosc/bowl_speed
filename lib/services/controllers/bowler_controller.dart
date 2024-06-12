@@ -1,11 +1,6 @@
 import 'dart:developer';
 
-import 'package:bowl_speed/services/models/bowler_model.dart';
-import 'package:bowl_speed/services/models/quick_tap_model.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../utils/db_helper.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
 class BowlerController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -87,6 +82,8 @@ class BowlerController extends GetxController
     if (isDeleted && isRecordsDeleted) {
       log("deleted");
       getAllBowlers();
+      QuickTapController.instance.updatedHistory();
+      // VideoMeasureController.instance.getHistory();
     }
     update(['bowler']);
     // Get.to(() => const QuickTapHistoryScreen());

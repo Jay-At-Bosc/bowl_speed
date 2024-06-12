@@ -1,12 +1,4 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'package:bowl_speed/services/controllers/unit_conversion_controller.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-import '../../utils/colors.dart';
-import '../../utils/enums.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
 class CustomInputDropdown<T extends Unit>
     extends GetView<UnitConversionController> {
@@ -41,7 +33,7 @@ class CustomInputDropdown<T extends Unit>
           Flexible(
             flex: 5,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
               decoration: BoxDecoration(
                 // color: AppColors.blueColor,
                 borderRadius: BorderRadius.circular(10),
@@ -52,7 +44,7 @@ class CustomInputDropdown<T extends Unit>
                   color: AppColors.textDarkColor,
                   fontWeight: FontWeight.w400,
                 ),
-                underline: SizedBox(),
+                underline: const SizedBox(),
                 borderRadius: BorderRadius.circular(10),
                 value: dropdownValue,
                 items: dropdownItems.map((T unit) {
@@ -65,7 +57,7 @@ class CustomInputDropdown<T extends Unit>
               ),
             ),
           ),
-          SizedBox(width: 6),
+          const SizedBox(width: 6),
           Flexible(
               flex: 4,
               child: Form(
@@ -85,11 +77,11 @@ class CustomInputDropdown<T extends Unit>
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: AppColors.blueColor),
+                      borderSide: const BorderSide(color: AppColors.blueColor),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: AppColors.blueColor),
+                      borderSide: const BorderSide(color: AppColors.blueColor),
                     ),
                   ),
                   controller: formController,

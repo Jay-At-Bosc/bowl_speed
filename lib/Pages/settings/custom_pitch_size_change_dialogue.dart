@@ -1,21 +1,11 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'package:bowl_speed/utils/colors.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-import '../../services/routes/app_routes.dart';
-import '../../utils/labels.dart';
-import '../../utils/validators.dart';
-import '../../widgets/custom_elevated_button_with_icon.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
 Future<void> customPitchSizeChangeDialog(
     TextEditingController controller, Function() onChange, Key key) async {
   await showGeneralDialog(
     context: Get.context!,
     barrierLabel: 'Label',
-    transitionDuration: Duration(milliseconds: 300),
+    transitionDuration: const Duration(milliseconds: 300),
     pageBuilder: (context, animation1, animation2) {
       return Container();
     },

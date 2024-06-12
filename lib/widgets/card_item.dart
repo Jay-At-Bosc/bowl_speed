@@ -1,13 +1,5 @@
-// ignore_for_file: unused_import
+import 'package:bowl_speed/imports_manager.dart';
 
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:iconsax/iconsax.dart';
-
-import '../utils/colors.dart';
-import '../utils/constants.dart';
-import 'custom_lable_text.dart';
 
 class CardItem extends StatelessWidget {
   const CardItem({

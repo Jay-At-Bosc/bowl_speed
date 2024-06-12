@@ -1,13 +1,4 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'package:bowl_speed/services/routes/app_routes.dart';
-import 'package:flutter/material.dart';
-
-import 'package:google_fonts/google_fonts.dart';
-import 'package:iconsax/iconsax.dart';
-
-import '../utils/colors.dart';
-import 'custom_menu_features.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -41,7 +32,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: isBack
           ? IconButton(
               onPressed: () => AppPages.back,
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_back_ios_rounded,
                 color: AppColors.textWhiteColor,
               ),

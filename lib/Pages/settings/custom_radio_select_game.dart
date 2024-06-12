@@ -1,10 +1,4 @@
-import 'package:bowl_speed/utils/colors.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-import '../../services/controllers/settings_controller.dart';
-import '../../utils/enums.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
 class CustomRadioButton extends GetWidget<SettingsController> {
   const CustomRadioButton(

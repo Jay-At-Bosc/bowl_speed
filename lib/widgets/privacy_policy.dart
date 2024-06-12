@@ -1,10 +1,6 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names
 
-import 'package:bowl_speed/widgets/custom_app_bar.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
-import '../utils/labels.dart';
 
 class PrivacyPolicy extends StatelessWidget {
   const PrivacyPolicy({super.key});
@@ -26,7 +22,7 @@ class PrivacyPolicy extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomPermissionHeading(permissionNames[index]),
-                  SizedBox(height: 6),
+                  const SizedBox(height: 6),
                   CustomPermissionDescription(
                       permissions[permissionNames[index]] ?? []),
                 ],
@@ -43,11 +39,11 @@ class PrivacyPolicy extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.max,
       children: [
-        Icon(
+        const Icon(
           Icons.lock,
           color: Colors.green,
         ),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         Text(
           PermissionName,
           style: GoogleFonts.rubik(fontSize: 16, fontWeight: FontWeight.bold),
@@ -65,7 +61,7 @@ class PrivacyPolicy extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 4.0),
           child: Row(
             children: [
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
               Expanded(
                 child: Text(
                   '- $description',

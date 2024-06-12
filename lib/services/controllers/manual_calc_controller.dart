@@ -1,16 +1,6 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'dart:developer';
 
-import 'package:bowl_speed/utils/db_helper.dart';
-import 'package:bowl_speed/utils/formate_functions.dart';
-import 'package:bowl_speed/utils/labels.dart';
-import 'package:bowl_speed/widgets/custom_animated_dialogue.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../models/manual_calc_model.dart';
-import '../routes/app_pages.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
 class ManualCalculatorController extends GetxController {
   static ManualCalculatorController get instance =>
@@ -37,10 +27,10 @@ class ManualCalculatorController extends GetxController {
   }
 
   void calculateSpeed() async {
-   if(distanceFocusNode.hasFocus || timeFocusNode.hasFocus){
-     distanceFocusNode.unfocus();
-     timeFocusNode.unfocus();
-   }
+    if (distanceFocusNode.hasFocus || timeFocusNode.hasFocus) {
+      distanceFocusNode.unfocus();
+      timeFocusNode.unfocus();
+    }
     if (formKey.currentState!.validate()) {
       speedMps = distance / time;
       speedKmph = speedMps * 3.6;

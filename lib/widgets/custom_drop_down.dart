@@ -1,9 +1,5 @@
-import 'package:bowl_speed/utils/labels.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
-import '../services/controllers/bowler_controller.dart';
-import '../utils/colors.dart';
 
 class CustomDropDown extends StatelessWidget {
   const CustomDropDown({

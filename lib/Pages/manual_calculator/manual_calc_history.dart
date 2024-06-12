@@ -1,14 +1,4 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'package:bowl_speed/services/controllers/manual_calc_controller.dart';
-
-import 'package:bowl_speed/widgets/custom_app_bar.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../utils/colors.dart';
-import '../../utils/labels.dart';
-import '../../widgets/custom_card_row.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
 class ManualCalcHistory extends GetView<ManualCalculatorController> {
   const ManualCalcHistory({super.key});
@@ -75,34 +65,3 @@ Widget _buildCustomCardRow(String label, String value) {
 Widget _buildDivider() {
   return const Divider();
 }
-
-// class CustomRowForHistoryCard extends StatelessWidget {
-//   const CustomRowForHistoryCard(
-//       {super.key, required this.property, required this.value});
-
-//   final String property;
-//   final String value;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(vertical: 4.0),
-//       child: Row(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: [
-//           Expanded(
-//             flex: 3,
-//             child: Text(
-//               property.toUpperCase(),
-//               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
-//             ),
-//           ),
-//           Expanded(
-//             flex: 3,
-//             child: Text(value),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }

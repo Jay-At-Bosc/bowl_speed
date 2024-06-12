@@ -1,7 +1,5 @@
-import 'package:bowl_speed/utils/colors.dart';
-import 'package:bowl_speed/widgets/custom_lable_text.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:bowl_speed/imports_manager.dart';
+
 
 class ConversionIconLabel extends StatelessWidget {
   const ConversionIconLabel({

@@ -1,21 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
-import 'package:bowl_speed/utils/colors.dart';
-import 'package:bowl_speed/widgets/custom_app_bar.dart';
-import 'package:bowl_speed/widgets/custom_lable_text.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-import '../../services/controllers/unit_conversion_controller.dart';
-
-import '../../utils/enums.dart';
-import '../../utils/formate_functions.dart';
-import '../../utils/labels.dart';
-import '../../utils/validators.dart';
-
-import 'custom_input_dropdown.dart';
-import 'custom_output_dropdown.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
 class UnitConversionScreen extends GetView<UnitConversionController> {
   const UnitConversionScreen({super.key});
@@ -23,13 +6,12 @@ class UnitConversionScreen extends GetView<UnitConversionController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         title: Labels.unitConversion,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: GetBuilder<UnitConversionController>(
-          builder: (context) {
+        child: GetBuilder<UnitConversionController>(builder: (context) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +25,7 @@ class UnitConversionScreen extends GetView<UnitConversionController> {
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               // Input Dropdown
@@ -68,7 +50,7 @@ class UnitConversionScreen extends GetView<UnitConversionController> {
                 dropdownonChanged: controller.updateOutputDistanceUnit,
                 
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
 
@@ -81,7 +63,7 @@ class UnitConversionScreen extends GetView<UnitConversionController> {
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               // Input Dropdown

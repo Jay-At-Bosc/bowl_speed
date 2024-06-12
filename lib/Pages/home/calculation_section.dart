@@ -1,12 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
-import '../../services/routes/app_pages.dart';
-import '../../utils/labels.dart';
-import '../../widgets/custom_lable_text.dart';
-import 'conversion_icon_label.dart';
 
 class CalculationSection extends StatelessWidget {
   const CalculationSection({

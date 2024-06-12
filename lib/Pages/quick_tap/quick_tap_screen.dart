@@ -1,20 +1,5 @@
+import 'package:bowl_speed/imports_manager.dart';
 import 'dart:developer';
-import 'package:bowl_speed/services/controllers/bowler_controller.dart';
-import 'package:bowl_speed/services/models/bowler_model.dart';
-import 'package:bowl_speed/services/routes/app_routes.dart';
-import 'package:bowl_speed/utils/colors.dart';
-import 'package:bowl_speed/utils/labels.dart';
-import 'package:bowl_speed/widgets/custom_app_bar.dart';
-import 'package:circular_countdown_timer/circular_countdown_timer.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:iconsax/iconsax.dart';
-
-import '../../services/controllers/quick_tap_controller.dart';
-
-import '../../services/routes/app_pages.dart';
-import '../../widgets/custom_lable_text.dart';
 
 class QuickTapScreen extends StatelessWidget {
   const QuickTapScreen({super.key});

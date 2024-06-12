@@ -1,11 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
-import '../../services/controllers/video_measure_controller.dart';
-import '../../services/routes/app_pages.dart';
-import '../../utils/colors.dart';
-import '../../utils/labels.dart';
-import '../../widgets/card_item.dart';
+
+
 
 class MenuSectionCard extends StatelessWidget {
   const MenuSectionCard({

@@ -1,12 +1,4 @@
-import 'package:bowl_speed/services/controllers/quick_tap_controller.dart';
-import 'package:bowl_speed/utils/colors.dart';
-import 'package:bowl_speed/utils/labels.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
-
-import '../../services/routes/app_pages.dart';
-import '../../widgets/custom_rounded_icon.dart';
+import 'package:bowl_speed/imports_manager.dart';
 
 class InformationSection extends StatelessWidget {
   const InformationSection({
