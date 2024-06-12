@@ -35,7 +35,7 @@ class HomeBanner extends StatelessWidget {
                   top: 60,
                   left: 20,
                   child: SizedBox(
-                    width: Get.width / 2,
+                    width: Get.width / 2.2,
                     child: CustomLabelText(
                       label: Labels.bannerTitle,
                       style: GoogleFonts.rubik(

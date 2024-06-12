@@ -1,14 +1,22 @@
 import 'package:bowl_speed/imports_manager.dart';
 
 void main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp,
+  //   DeviceOrientation.portraitDown,
+  // ]);
+  // await DatabaseHelper.instance.database;
+
+  // runApp(const MyApp());
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
+  await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
-  ]);
-  await DatabaseHelper.instance.database; 
-
-  runApp(const MyApp());
+  ]).then((_) async {
+    await DatabaseHelper.instance.database;
+    runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {

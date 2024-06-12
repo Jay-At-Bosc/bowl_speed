@@ -1,6 +1,5 @@
 import 'package:bowl_speed/imports_manager.dart';
 
-
 class CardItem extends StatelessWidget {
   const CardItem({
     super.key,
@@ -51,7 +50,7 @@ class CardItem extends StatelessWidget {
               // height: 70,
               padding:
                   const EdgeInsets.symmetric(horizontal: 22.0, vertical: 4.0)
-                      .copyWith(top: 0, bottom: 0),
+                      .copyWith(top: 2, bottom: 2),
               decoration: BoxDecoration(
                 color: AppColors.blueColor.withOpacity(0.1),
                 borderRadius: BorderRadius.only(
