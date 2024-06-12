@@ -41,26 +41,27 @@ class UnitConversionController extends GetxController {
 
   // Methods for distance conversion
   void updateInputDistanceUnit(DistanceUnits? value) {
+    isDistanceFormValid;
     inputDistanceUnit = value ?? inputDistanceUnit;
     log("after update input Dist. : $value");
     calculateDistanceConversion();
   }
 
   void updateOutputDistanceUnit(DistanceUnits? value) {
+    isDistanceFormValid;
     outputDistanceUnit = value ?? outputDistanceUnit;
     log("after update output Dist. : $value");
     calculateDistanceConversion();
   }
 
   void updateDistanceForm(String value) {
+    isDistanceFormValid;
     log("value : $value");
     calculateDistanceConversion();
   }
 
   void calculateDistanceConversion() {
     distanceFocusNode.unfocus();
-
-    isDistanceFormValid;
 
     distanceConversionFactor =
         convertDistance(inputDistanceUnit, outputDistanceUnit);
@@ -73,26 +74,27 @@ class UnitConversionController extends GetxController {
 
   /// Methods for speed conversion
   void updateInputSpeedUnit(SpeedUnits? value) {
+    isSpeedFormValid;
     inputSpeedUnit = value ?? inputSpeedUnit;
     log("after update input Speed. : $value");
     calculateSpeedConversion();
   }
 
   void updateOutputSpeedUnit(SpeedUnits? value) {
+    isSpeedFormValid;
     outputSpeedUnit = value ?? outputSpeedUnit;
     log("after update output Speed. : $value");
     calculateSpeedConversion();
   }
 
   void updateSpeedForm(String value) {
+    isSpeedFormValid;
     log("value : $value");
     calculateSpeedConversion();
   }
 
   void calculateSpeedConversion() {
     speedFocusNode.unfocus();
-
-    isSpeedFormValid;
 
     speedConversionFactor = convertSpeed(inputSpeedUnit, outputSpeedUnit);
     log("converstion factor : $speedConversionFactor");
