@@ -32,10 +32,10 @@ class HomeBanner extends StatelessWidget {
                       Get.toNamed(Routes.quickTapCalcHistory);
                     }),
                 Positioned(
-                  top: 60,
+                  top: Get.height * 0.09,
                   left: 20,
                   child: SizedBox(
-                    width: Get.width / 2,
+                    width: Get.width / 2.2,
                     child: CustomLabelText(
                       label: Labels.bannerTitle,
                       style: GoogleFonts.rubik(

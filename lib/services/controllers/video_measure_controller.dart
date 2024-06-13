@@ -193,7 +193,6 @@ class VideoMeasureController extends GetxController {
           children: [
             ElevatedButton(
               onPressed: () {
-                // update();
                 ScaffoldMessenger.of(Get.context!).showSnackBar(
                   snackBarAnimationStyle: AnimationStyle(
                       duration: const Duration(milliseconds: 500),
@@ -206,7 +205,7 @@ class VideoMeasureController extends GetxController {
                 customVideoPlayerController.videoPlayerController.pause();
                 point1 = customVideoPlayerController
                     .videoPlayerController.value.position.inMilliseconds;
-                // initializeVideoPlayer();
+
                 update();
               },
               style: ElevatedButton.styleFrom(
@@ -214,7 +213,7 @@ class VideoMeasureController extends GetxController {
                 backgroundColor: AppColors.orangeColor.withOpacity(1),
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(10.0),
                 ),
               ),
               child: const Text(
@@ -281,7 +280,7 @@ class VideoMeasureController extends GetxController {
               ),
               child: const Text(
                 Labels.release,
-                style: TextStyle(fontSize: 12),
+                style: TextStyle(fontSize: 13),
               ),
             ),
             IconButton(
